@@ -1,0 +1,59 @@
+.qr-scanner-container {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); // Centering
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease-in-out;
+	padding: 20px;
+
+	&.active {
+		opacity: 1;
+		pointer-events: all;
+	}
+}
+
+.qr-scanner {
+	width: 100%;
+	max-width: 400px; // Adjust width for better UI
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: white;
+	padding: 20px;
+	border-radius: 12px;
+	box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+.qr-scanner video {
+	width: 100% !important;
+	height: auto !important;
+	object-fit: cover;
+}
+
+.close-button {
+	margin-top: 20px;
+	background: red;
+	color: white;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 8px;
+	font-size: 18px;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	transition: background 0.3s ease-in-out;
+
+	&:hover {
+		background: darkred;
+	}
+}

@@ -1,0 +1,293 @@
+html body {
+	font-family: var(--f-main) !important;
+	font-size: 100% !important;
+	font-weight: normal;
+	line-height: 1.4;
+	user-select: none !important;
+	background-color: white;
+	color: white;
+
+	@media (max-width: 390px) {
+		font-size: 15px !important;
+	}
+}
+.box {
+	background-color: white;
+	border-radius: 20px 20px 0 0;
+	padding: 24px 16px 80px;
+	color: black;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		background-color: var(--secondary);
+	}
+}
+
+textarea,
+input.plain-text,
+/* this is a class */
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type=”email”],
+input[type=”tel”],
+input[type=”number”],
+.input-radio-checkbox {
+	/* this is a class */
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+
+.icon-input {
+	.zaui-input-group-addon,
+	.zaui-input-suffix {
+		display: none !important;
+	}
+
+	position: relative;
+
+	input {
+		padding: 0 40px 0 16px !important;
+		text-align: left !important;
+	}
+
+	&::before {
+		width: 20px;
+		height: 20px;
+		display: block;
+		content: "";
+		position: absolute;
+		top: 50%;
+		right: 12px;
+		transform: translateY(-50%);
+		background-color: red;
+		z-index: 2;
+	}
+}
+
+.datepicker {
+	&::before {
+		background: url("../images/ic1.png") center no-repeat;
+		background-size: 100%;
+	}
+}
+
+.select {
+	&::before {
+		background: url("../images/ic2.png") center no-repeat;
+		background-size: 100%;
+	}
+}
+
+.zaui-select {
+	position: relative;
+	border: none;
+	margin: 0;
+
+	&::before {
+		width: 12px;
+		height: 16px;
+		display: block;
+		content: "";
+		position: absolute;
+		top: 50%;
+		right: 20px;
+		transform: translateY(-50%);
+		background: url("../images/16.png") center no-repeat;
+		background-size: 100%;
+		z-index: 22;
+	}
+
+	input {
+		border: none !important;
+	}
+
+	.zaui-input-group-addon,
+	.zaui-input-suffix {
+		display: none;
+	}
+}
+
+.zaui-sheet {
+	&::before {
+		width: 12px;
+		height: 16px;
+		display: block;
+		content: "";
+		position: absolute;
+		top: 50%;
+		right: 12px;
+		transform: translateY(-50%);
+		background: url("../images/16.png") center no-repeat;
+		background-size: 100%;
+		z-index: 22;
+	}
+
+	.zaui-modal-wrapper {
+		z-index: 1006 !important;
+	}
+
+	.zaui-btn-icon {
+		background-color: white;
+		border-radius: 100%;
+		width: 32px !important;
+		height: 32px !important;
+		display: inline-flex !important;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.zaui-sheet-content {
+		background-color: white;
+	}
+
+	.zaui-select-option {
+		&.zaui-select-option-selected {
+			i {
+				color: red;
+			}
+		}
+		&:focus,
+		&:hover {
+			background-color: #e1e1e1 !important;
+			i {
+				color: red;
+			}
+		}
+
+		span {
+			color: black;
+		}
+
+		i {
+			color: white;
+			font-weight: bold;
+		}
+
+		&::after {
+			display: none;
+		}
+	}
+
+	.zaui-select-title,
+	.zaui-picker-title {
+		color: var(--primary);
+		text-transform: uppercase;
+		padding-top: 20px;
+	}
+
+	.zaui-picker-column {
+		.zaui-picker-item {
+			color: white;
+
+			&.zaui-picker-item-selected {
+				background-color: black;
+			}
+		}
+	}
+}
+
+.title {
+	text-align: center;
+	font-size: 2rem;
+	line-height: 1.2;
+	&.bold {
+		font-weight: bold;
+	}
+
+	@media (max-width: 400px) {
+		font-size: 1.75rem;
+	}
+}
+
+.menu {
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	height: 80px;
+	background: url("@/assets/images/bg.jpg") no-repeat center center/cover;
+	z-index: 2;
+	box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.16);
+	.menu__item {
+		flex: 1;
+		font-weight: 700;
+		text-align: center;
+		color: red;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		&.active {
+			color: #9c0005;
+		}
+		svg {
+			height: 30px;
+		}
+	}
+}
+
+.custom-pagination {
+	display: flex;
+	list-style-type: none;
+	padding: unset;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 0rem;
+
+	li {
+		color: var(--white);
+		width: 8vw;
+		height: 8vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 10px;
+
+		&.previous {
+			a {
+				background: url("../images/circle.png") center no-repeat;
+				background-size: 100% 100%;
+				transform: rotate(180deg);
+			}
+		}
+
+		&.previous,
+		&.next {
+			a {
+				width: 6vw;
+				height: 6vw;
+
+				background: url("../images/circle.png") center no-repeat;
+				background-size: 100% 100%;
+				overflow: hidden;
+				text-indent: 999px;
+			}
+
+			&.disabled {
+				opacity: 0.5;
+			}
+		}
+
+		&.pagination-item-active {
+			border-radius: 50%;
+			color: #ffdc26;
+			font-size: 12px;
+		}
+	}
+}
+
+.img {
+	img {
+		width: 100%;
+		display: block;
+	}
+}

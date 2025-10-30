@@ -1,0 +1,44 @@
+.homepage {
+	padding-bottom: 100px;
+	.banner {
+		padding: 32px 24px;
+		background: url("@/assets/images/bg1.png") center no-repeat;
+		background-size: cover;
+		position: relative;
+		overflow: hidden;
+		.logo {
+			width: 50%;
+			max-width: 150px;
+			margin: 0 auto 32px;
+		}
+
+		p {
+			font-size: 0.8125em;
+			text-align: center;
+			margin: 0 0 12px 0;
+			width: 80%;
+			position: relative;
+			z-index: 2;
+			margin: auto;
+
+			strong {
+				font-weight: bold;
+			}
+		}
+	}
+	.container {
+		padding-bottom: 0;
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+	.fix-button {
+		position: fixed;
+		left: 0;
+		bottom: 100px;
+		width: 100%;
+		z-index: 22;
+	}
+}

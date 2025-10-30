@@ -1,0 +1,154 @@
+.upload-component {
+
+	.upload-area {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 0px 20px;
+		// border: 2px dashed #FF0023;
+		border-radius: 20px;
+		// background: linear-gradient(135deg, rgba(255, 0, 35, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+		cursor: pointer;
+		transition: all 0.3s ease;
+		min-height: 200px;
+
+		&:hover {
+			border-color: #ce2411;
+			// background: linear-gradient(135deg, rgba(255, 0, 35, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+			transform: translateY(-2px);
+			box-shadow: 0 8px 25px rgba(255, 0, 35, 0.2);
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+
+		.upload-icon {
+			margin-bottom: 20px;
+
+			img {
+				width: 60px;
+				height: 60px;
+				object-fit: contain;
+				filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+			}
+		}
+
+		.upload-text {
+			text-align: center;
+			font-size: 14px;
+			line-height: 1.5;
+			max-width: 280px;
+			font-weight: 500;
+		}
+	}
+
+	.preview-area {
+		// border: 2px solid #FF0023;
+		// border-radius: 20px;
+		overflow: hidden;
+		// background: white;
+		box-shadow: 0 8px 25px rgba(255, 0, 35, 0.15);
+		position: relative;
+		padding: 50px;
+
+		.preview-bill {
+			width: 100%;
+			// max-width: 150px;
+			margin: 0 auto;
+			// height: 250px;
+			overflow: hidden;
+			position: relative;
+			border-radius: 5px;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+		.preview-image {
+			width: 100%;
+			margin: 0 auto;
+			height: 250px;
+			overflow: hidden;
+			position: relative;
+			border-radius: 5px;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}
+.preview-container {
+	position: relative;
+	width: 100%;
+}
+.preview-actions {
+	padding: 20px;
+	text-align: center;
+	position: absolute;
+	bottom: -30px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	width: 100%;
+	// width: 200px;
+
+	.btn-upload-another {
+		background: linear-gradient(135deg, #ff0023 0%, #ce2411 100%);
+		color: white;
+		border: none;
+		padding: 12px 24px;
+		border-radius: 25px;
+		font-size: 18px;
+		font-weight: 800;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 15px rgba(255, 0, 35, 0.3);
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(255, 0, 35, 0.4);
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+	}
+}
+
+// Animation cho upload area
+.upload-area {
+	animation: fadeInUp 0.6s ease-out;
+}
+
+.preview-area {
+	animation: fadeInScale 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInScale {
+	from {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

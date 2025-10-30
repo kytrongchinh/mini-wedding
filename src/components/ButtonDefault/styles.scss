@@ -1,0 +1,81 @@
+.button-default {
+	position: relative;
+	z-index: 200;
+	// display: block;
+	// text-align: center;
+
+	&.sub {
+		.wrap {
+			background-color: var(--secondary);
+			color: black;
+			font-size: 0.875em;
+			height: 46px;
+			border-radius: 10px;
+
+			&::before {
+				background-color: white;
+			}
+		}
+	}
+
+	&.secondary {
+		.wrap {
+			padding: 0 70px 2px 30px;
+
+			&::before {
+				background: url('../../assets/images/1.png') center no-repeat;
+				background-size: 100%;
+				display: block;
+				content: "";
+				aspect-ratio: 1;
+				height: 100%;
+				width: auto;
+				right: 0;
+				top: 0px;
+				position: absolute;
+			}
+
+
+		}
+	}
+
+	&.center {
+		text-align: center;
+	}
+
+	.wrap {
+		text-decoration: none;
+		color: white;
+		text-align: center;
+		display: inline-block;
+		transition: var(--transition);
+		font-size: 1rem;
+		background-color: black;
+		border-radius: 50px;
+		height: 46px;
+		padding: 0 30px 2px;
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+		// min-width: 200px;
+		font-weight: 600;
+
+		@media (max-width: 400px) {
+			font-size: 0.875em;
+		}
+
+		&::after {
+			width: 100%;
+			height: 2px;
+			display: block;
+			content: "";
+			background: white;
+			bottom: 0;
+			left: 0;
+			position: absolute;
+		}
+	}
+}

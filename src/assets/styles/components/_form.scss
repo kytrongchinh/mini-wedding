@@ -1,0 +1,73 @@
+form {
+	.error {
+		font-size: 0.75em;
+		text-align: center;
+		padding-top: 8px;
+		color: yellow;
+		text-align: left;
+		padding-left: 16px;
+		font-weight: 500;
+		position: relative;
+		z-index: 2;
+		text-align: center;
+	}
+	label {
+		font-size: 0.8125rem;
+		font-weight: 500;
+		display: block;
+		text-align: center;
+		margin-bottom: 12px;
+	}
+	.zaui-select {
+		&::before {
+			background: url("@/assets/images/v2/5.png") no-repeat center center;
+			background-size: 100%;
+			width: 16px;
+			height: 12px;
+		}
+		.zaui-input-affix-wrapper {
+			background-color: white;
+			border-radius: 50px;
+			border: none;
+			input {
+				font-size: 18px;
+			}
+		}
+	}
+	input,
+	select {
+		height: 50px;
+		width: 100%;
+		background-color: white;
+		border-radius: 50px;
+		padding: 0 20px;
+		outline: none;
+		text-align: center;
+		font-size: 1.125rem;
+		transition: all ease 0.5s;
+		font-weight: bold;
+		border: 1px solid var(--secondary);
+		color: black;
+		font-weight: bold;
+		border: none;
+
+		&::-webkit-input-placeholder {
+			color: #4f4f4f;
+		}
+
+		&::-moz-placeholder {
+			/* Firefox 19+ */
+			color: #4f4f4f;
+		}
+
+		&:-ms-input-placeholder {
+			/* IE 10+ */
+			color: #4f4f4f;
+		}
+
+		&:-moz-placeholder {
+			/* Firefox 18- */
+			color: #4f4f4f;
+		}
+	}
+}

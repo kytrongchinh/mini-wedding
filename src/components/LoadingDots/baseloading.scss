@@ -1,0 +1,132 @@
+.loading-base {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px 20px;
+
+	.loading-base-inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		// gap: 16px;
+
+		.loading-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1vw; // responsive khoảng cách
+			background: url("../../assets/images/sayhi/loading/frame.png") no-repeat center center;
+			background-size: contain;
+			width: 100%; // full chiều rộng cha
+			max-width: 320px; // giới hạn lớn nhất
+			height: auto;
+			aspect-ratio: 7 / 2; // giữ tỉ lệ ảnh nếu có
+			padding: 1vw;
+			position: relative;
+
+			.loading-item {
+				flex: 1 1 auto;
+				aspect-ratio: 1 / 1;
+				background: #6864ec;
+				animation: loadingPulse 1.6s infinite;
+
+				// Responsive fallback
+				min-width: 20px;
+				min-height: 20px;
+				max-width: 40px;
+				max-height: 40px;
+
+				&:nth-child(1) {
+					animation-delay: 0s;
+					background: #7260e6;
+					padding-left: 5px;
+					border-top-left-radius: 5px;
+					border-bottom-left-radius: 5px;
+				}
+
+				&:nth-child(2) {
+					animation-delay: 0.2s;
+					background: white;
+					background: #6864ec;
+				}
+
+				&:nth-child(3) {
+					animation-delay: 0.4s;
+					background: #7b5cdf;
+				}
+				&:nth-child(4) {
+					animation-delay: 0.6s;
+					background: #8557d9;
+				}
+				&:nth-child(5) {
+					animation-delay: 0.8s;
+					background: #8f53d2;
+				}
+				&:nth-child(6) {
+					animation-delay: 1s;
+					background: #984fcc;
+				}
+				&:nth-child(7) {
+					animation-delay: 1.2s;
+					background: #a24bc5;
+				}
+				&:nth-child(8) {
+					animation-delay: 1.4s;
+					background: #ac46bf;
+				}
+				&:nth-last-child(1) {
+					animation-delay: 1.6s;
+					background: #bf3eb2;
+					border-top-right-radius: 5px;
+					border-bottom-right-radius: 5px;
+				}
+			}
+		}
+		.text-loading {
+			animation: loadingText 2s ease-in-out infinite;
+		}
+		.loading-base-text {
+			padding-top: 20px;
+			font-size: clamp(14px, 2vw, 16px); // tự điều chỉnh theo màn hình
+			color: #fff;
+			font-weight: 500;
+			text-align: center;
+			// animation: loadingText 2s ease-in-out infinite;s
+		}
+	}
+}
+@keyframes loadingText {
+	0%,
+	100% {
+		opacity: 0.7;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+@keyframes loadingPulse {
+	0% {
+		transform: scale(1);
+		opacity: 0.6;
+	}
+	50% {
+		transform: scale(1.5);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 0.6;
+	}
+}
+@media (max-width: 480px) {
+	.loading-container {
+		max-width: 90%;
+		padding: 3vw;
+	}
+
+	.loading-item {
+		min-width: 18px;
+		min-height: 18px;
+	}
+}

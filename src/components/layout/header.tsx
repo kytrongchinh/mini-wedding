@@ -100,11 +100,11 @@ const HeaderSection: FC<HeaderSectionProps> = (props) => {
 					</div>
 				)}
 				<div className="my-header-title uppercase">{title}</div>
-				<div className="logo">
+				{/* <div className="logo">
 					<div className="img">
 						<img src={logo} />
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

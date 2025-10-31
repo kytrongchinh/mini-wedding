@@ -1,0 +1,52 @@
+.wedding {
+	// padding-bottom: 100px;
+	background: url("@/assets/images/mi-mie/bg.png") center no-repeat;
+	background-size: cover;
+	color: rgb(164, 28, 28);
+	.container {
+		padding: 10px 2px;
+
+		position: relative;
+		overflow: hidden;
+
+		.wedding-title {
+			font-family: var(--f-main);
+			font-size: 36px;
+			font-weight: 600;
+			text-align: center;
+			line-height: 50px;
+		}
+
+		p {
+			font-size: 0.8125em;
+			text-align: center;
+			margin: 0 0 12px 0;
+			width: 80%;
+			position: relative;
+			z-index: 2;
+			margin: auto;
+
+			strong {
+				font-weight: bold;
+			}
+		}
+		.wedding-name {
+			font-family: var(--f-best);
+			color: rgb(164, 28, 28);
+			position: relative;
+		}
+	}
+}
+@keyframes lineExpand {
+	from {
+		width: 0;
+		opacity: 0;
+	}
+	to {
+		width: 75%;
+		opacity: 1;
+	}
+}
+.animate-lineExpand {
+	animation: lineExpand 1s ease-out forwards;
+}

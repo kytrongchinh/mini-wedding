@@ -14,6 +14,7 @@ import Profile from "@/pages/profile";
 import TnC from "@/pages/tnc";
 import Logout from "@/pages/logout";
 import AuthRoute from "../middleware/auth-route";
+import WeddingPage from "@/pages/wedding";
 
 export const RouterCustom: FC = () => {
 	const { user } = useAuth();
@@ -24,28 +25,29 @@ export const RouterCustom: FC = () => {
 			element: <DefaultLayout />,
 			children: [
 				{ path: MY_ROUTERS_FULL.HOME.NAME, element: <HomePage /> },
+				{ path: MY_ROUTERS_FULL.WEDDING.NAME, element: <WeddingPage /> },
 				{ path: MY_ROUTERS_FULL.LOGOUT.NAME, element: <Logout /> },
 				{ path: MY_ROUTERS_FULL.TNC.NAME, element: <TnC /> },
 
 				// { path: MY_ROUTERS_FULL.FORM_FILL_INFO.NAME, element: <Form /> },
-				{ path: MY_ROUTERS_FULL.PROFILE.NAME, element: <Profile /> },
+				// { path: MY_ROUTERS_FULL.PROFILE.NAME, element: <Profile /> },
 
-				{
-					path: MY_ROUTERS_FULL.SCAN_ID.NAME,
-					element: (
-						<AuthRoute user={user}>
-							<Form />
-						</AuthRoute>
-					),
-				},
-				{
-					path: MY_ROUTERS_FULL.SCAN.NAME,
-					element: (
-						<AuthRoute user={user}>
-							<Form />
-						</AuthRoute>
-					),
-				},
+				// {
+				// 	path: MY_ROUTERS_FULL.SCAN_ID.NAME,
+				// 	element: (
+				// 		<AuthRoute user={user}>
+				// 			<Form />
+				// 		</AuthRoute>
+				// 	),
+				// },
+				// {
+				// 	path: MY_ROUTERS_FULL.SCAN.NAME,
+				// 	element: (
+				// 		<AuthRoute user={user}>
+				// 			<Form />
+				// 		</AuthRoute>
+				// 	),
+				// },
 			],
 		},
 

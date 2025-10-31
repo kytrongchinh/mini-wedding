@@ -7,31 +7,9 @@
 		padding-top: 60px;
 		min-height: 100vh;
 		box-sizing: border-box;
-		background: url("@/assets/images/bg1.png") no-repeat center center;
-		background-size: cover;
-	}
+		// background: url("@/assets/images/bg1.png") no-repeat center center;
+		// background-size: cover;
 
-	&::before {
-		aspect-ratio: 264/403;
-		display: block;
-		content: "";
-		position: absolute;
-		bottom: 40px;
-		left: 0%;
-		width: 23%;
-		background: url("@/assets/images/v2/3.png") center top no-repeat;
-		background-size: 100%;
-	}
-
-	&::after {
-		aspect-ratio: 297/460;
-		display: block;
-		content: "";
-		position: absolute;
-		bottom: 40px;
-		right: 0%;
-		width: 23%;
-		background: url("@/assets/images/v2/4.png") center top no-repeat;
-		background-size: 100%;
+		// background-color: rgb(164 0 0 / var(--tw-bg-opacity, 1)) !important;
 	}
 }

@@ -94,6 +94,8 @@ export enum GIFT_NAME {
 }
 export enum MY_ROUTERS {
 	HOME = "/",
+	WEDDING = "/wedding",
+	WEDDING_TIMELINE = "/wedding-timeline",
 	TNC = "/tnc",
 	PERSONAL = "/personal",
 	SCAN = "/qr",

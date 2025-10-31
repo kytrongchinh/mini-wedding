@@ -1,16 +1,13 @@
 .homepage {
-	padding-bottom: 100px;
-	.banner {
+	// padding-bottom: 100px;
+	background-color: rgb(164 0 0 / var(--tw-bg-opacity, 1)) !important;
+	.container {
 		padding: 32px 24px;
-		background: url("@/assets/images/bg1.png") center no-repeat;
-		background-size: cover;
+		// background: url("@/assets/images/bg1.png") center no-repeat;
+		// background-size: cover;
+		background-color: rgb(164 0 0 / var(--tw-bg-opacity, 1));
 		position: relative;
 		overflow: hidden;
-		.logo {
-			width: 50%;
-			max-width: 150px;
-			margin: 0 auto 32px;
-		}
 
 		p {
 			font-size: 0.8125em;
@@ -25,20 +22,10 @@
 				font-weight: bold;
 			}
 		}
-	}
-	.container {
-		padding-bottom: 0;
-		&::before,
-		&::after {
-			display: none;
+		.wedding-name {
+			font-family: var(--f-best);
+			color: rgb(252, 247, 227);
+			position: relative;
 		}
-	}
-
-	.fix-button {
-		position: fixed;
-		left: 0;
-		bottom: 100px;
-		width: 100%;
-		z-index: 22;
 	}
 }

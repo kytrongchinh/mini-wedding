@@ -204,7 +204,7 @@ const DefaultLayout: FC = () => {
 			<div className={clsx("container", location.pathname === "/" && "")}>
 				<Outlet />
 			</div>
-			<Menu />
+			{/* <Menu /> */}
 		</>
 	);
 };

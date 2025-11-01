@@ -1,0 +1,64 @@
+.timeline {
+	// padding-bottom: 100px;
+	background: url("@/assets/images/mi-mie/bg.png") center no-repeat;
+	background-size: cover;
+	color: rgb(164, 28, 28);
+	.container {
+		padding: 10px 2px;
+
+		position: relative;
+		overflow: hidden;
+
+		.timeline-title {
+			font-family: var(--f-main);
+			font-size: 32px;
+			font-weight: 600;
+			text-align: center;
+			line-height: 50px;
+		}
+		.mtitle-timeline {
+			position: absolute;
+			top: 10px;
+			right: -8%;
+			transform: translateX(-35%);
+			font-size: 110px;
+			font-weight: normal;
+			font-weight: 500;
+			z-index: 1;
+			white-space: nowrap;
+			font-family: "FONTSPRING DEMO - Grimpt Script", cursive;
+		}
+
+		p {
+			font-size: 0.8125em;
+			text-align: center;
+			margin: 0 0 12px 0;
+			width: 80%;
+			position: relative;
+			z-index: 2;
+			margin: auto;
+
+			strong {
+				font-weight: bold;
+			}
+		}
+		.timeline-name {
+			font-family: var(--f-best);
+			color: rgb(164, 28, 28);
+			position: relative;
+		}
+	}
+}
+@keyframes lineExpand {
+	from {
+		width: 0;
+		opacity: 0;
+	}
+	to {
+		width: 75%;
+		opacity: 1;
+	}
+}
+.animate-lineExpand {
+	animation: lineExpand 1s ease-out forwards;
+}

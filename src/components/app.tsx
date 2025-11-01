@@ -27,7 +27,7 @@ const MyApp = () => {
 		return (
 			<RecoilRoot>
 				<HelmetProvider>
-					<BrowserRouter basename="/zapps/3828507225390531318">
+					<BrowserRouter basename="/zapps/868938787760554822">
 						<App>
 							<SnackbarProvider>
 								<ScrollToTop />

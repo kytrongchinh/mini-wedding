@@ -7,8 +7,11 @@ import _ from "lodash";
 import couple from "@/assets/images/mi-mie/couple.png";
 import chande from "@/assets/images/mi-mie/chande.png";
 import date from "@/assets/images/mi-mie/date.png";
+import { useNavigate } from "react-router-dom";
+import { MY_ROUTERS } from "@/types/enums";
 
 const WeddingPage: FC<CommonProps> = () => {
+	const navigate = useNavigate();
 	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const [scope, animate] = useAnimate();
 
@@ -75,7 +78,7 @@ const WeddingPage: FC<CommonProps> = () => {
 					</div> */}
 
 					<div className="w-[55%] m-auto">
-						<div className="img animUp">
+						<div className="img animUp" onClick={() => navigate(MY_ROUTERS.WEDDING_TIMELINE)}>
 							<img src={date} alt="" />
 						</div>
 					</div>

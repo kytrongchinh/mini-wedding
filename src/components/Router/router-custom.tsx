@@ -15,6 +15,7 @@ import TnC from "@/pages/tnc";
 import Logout from "@/pages/logout";
 import AuthRoute from "../middleware/auth-route";
 import WeddingPage from "@/pages/wedding";
+import TimelinePage from "@/pages/timeline";
 
 export const RouterCustom: FC = () => {
 	const { user } = useAuth();
@@ -26,6 +27,7 @@ export const RouterCustom: FC = () => {
 			children: [
 				{ path: MY_ROUTERS_FULL.HOME.NAME, element: <HomePage /> },
 				{ path: MY_ROUTERS_FULL.WEDDING.NAME, element: <WeddingPage /> },
+				{ path: MY_ROUTERS_FULL.WEDDING_TIMELINE.NAME, element: <TimelinePage /> },
 				{ path: MY_ROUTERS_FULL.LOGOUT.NAME, element: <Logout /> },
 				{ path: MY_ROUTERS_FULL.TNC.NAME, element: <TnC /> },
 

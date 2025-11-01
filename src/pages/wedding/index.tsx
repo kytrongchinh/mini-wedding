@@ -6,6 +6,7 @@ import "./style.scss";
 import _ from "lodash";
 import couple from "@/assets/images/mi-mie/couple.png";
 import chande from "@/assets/images/mi-mie/chande.png";
+import date from "@/assets/images/mi-mie/date.png";
 
 const WeddingPage: FC<CommonProps> = () => {
 	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
@@ -25,7 +26,7 @@ const WeddingPage: FC<CommonProps> = () => {
 					<div className="w-1/2">
 						<h3 className="text-[#8B0000] font-bold text-lg">NHÀ GÁI</h3>
 						<p className="font-semibold">
-							Ông (Chú): <span className="uppercase">Trần Văn Bảy</span>
+							Anh: <span className="uppercase">Trần Xông Pha</span>
 							<br />
 							Bà (Dì): <span className="uppercase">Lê Thị Đồng</span>
 						</p>
@@ -53,36 +54,32 @@ const WeddingPage: FC<CommonProps> = () => {
 					<div className="text-[30px] text-center">Trọng Chính & Trường Mi</div>
 				</div>
 				<div className="text-center text-[#8B0000] font-sans mt-6">
-					{/* --- Đường viền trên --- */}
-					<div className="flex items-center justify-center mb-2 border-none">
+					{/* <div className="flex items-center justify-center mb-2 border-none">
 						<div className="w-[100px] border-t-[1px] border-[#8B0000]"></div>
 						<div className="w-[80px]"></div>
 						<div className="w-[100px] border-t-[1px] border-[#8B0000]"></div>
 					</div>
 
-					{/* --- Phần ngày tháng năm --- */}
 					<div className="flex justify-center items-center gap-3">
-						{/* Ngày */}
 						<div className="text-3xl md:text-4xl font-bold">21</div>
-
-						{/* Tháng */}
 						<div className="bg-[#8B0000] text-white rounded-full w-16 h-16 flex flex-col justify-center items-center border border-[#8B0000]">
 							<span className="text-[10px] font-semibold tracking-wide leading-none">THÁNG</span>
 							<span className="text-xl font-bold leading-none">12</span>
 						</div>
-
-						{/* Năm */}
 						<div className="text-3xl md:text-4xl font-bold">2025</div>
 					</div>
-
-					{/* --- Đường viền dưới --- */}
 					<div className="flex items-center justify-center mt-2">
 						<div className="w-[100px] border-t border-[#8B0000]"></div>
 						<div className="w-[80px]"></div>
 						<div className="w-[100px] border-t border-[#8B0000]"></div>
+					</div> */}
+
+					<div className="w-[55%] m-auto">
+						<div className="img animUp">
+							<img src={date} alt="" />
+						</div>
 					</div>
 
-					{/* Giờ */}
 					<div className="text-lg md:text-xl font-semibold tracking-wide mb-1">
 						9:00 <span className="text-sm font-normal">SÁNG</span>
 					</div>

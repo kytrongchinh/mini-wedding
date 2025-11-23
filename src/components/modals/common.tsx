@@ -152,7 +152,7 @@ const CommonModal: FC<CommonProps> = (props) => {
 				</div>
 				<div className="md-content box">
 					<div className="body">
-						<div className="content text-center">{renderContent()}</div>
+						<div className="text-center">{renderContent()}</div>
 					</div>
 				</div>
 			</div>

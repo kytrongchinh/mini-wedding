@@ -93,14 +93,21 @@ const TimelinePage: FC<CommonProps> = () => {
 						</div>
 					</div>
 
+					<div className="section mt-5">
+						<h3 className="text-[#8B0000] font-bold text-lg underline">TIỆC BÁO HỶ</h3>
+						<p className="text-base !text-[14px]">19h 08.01.2026 </p>
+
+						<p className="font-semibold">Én Restaurant & Event Space</p>
+						<p className="text-sm mt-1 italic">Robot Tower, 308C Điện Biên Phủ, Phường 4, Quận 3, Thành phố Hồ Chí Minh</p>
+					</div>
+
 					<div className="text-sm relative mt-5">
 						<div className="animUp absolute right-[-5px] top-[-40px]">
 							<img src={heart} alt="" className="w-[50%] opacity-80" />
 						</div>
-						Sự hiện hiện của
+						Sự hiện hiện của{" "}
 						{invitee?.name && (
-							<span className="text-sm font-bold italic ">
-								{" "}
+							<span className="text-sm font-bold italic underline decoration-dotted">
 								{invitee?.title} {invitee?.name}
 							</span>
 						)}

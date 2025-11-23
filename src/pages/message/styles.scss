@@ -56,7 +56,354 @@
 			}
 		}
 	}
-	
+
+	form {
+		.form-groups {
+			margin-bottom: 16px;
+			width: 100%;
+
+			.form-groups-w {
+				width: 100%;
+				&.has-icon {
+					position: relative;
+					input {
+						// padding-left: 44px;
+					}
+					.icon-input {
+						position: absolute;
+						top: 50%;
+						left: 14px;
+						transform: translateY(-50%);
+						width: 18px;
+					}
+					.icon-phone {
+						width: 20px;
+					}
+				}
+			}
+
+			&.width-50 {
+				width: calc(50% - 5px);
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			input[type="checkbox"],
+			input[type="radio"] {
+				display: none;
+			}
+
+			label {
+				display: flex;
+				align-items: center;
+				font-weight: 600;
+				font-size: 1rem;
+				color: rgb(164, 28, 28);
+				margin-bottom: 2px !important;
+				padding-left: 0rem;
+				display: flex;
+				flex-wrap: wrap;
+				text-align: center;
+				justify-content: center;
+				margin-bottom: 12px;
+				span {
+					display: block;
+					width: 100%;
+					font-size: 12px;
+					font-weight: 400;
+				}
+			}
+
+			.error {
+				font-size: 0.8375rem;
+				color: rgb(164, 28, 28);
+				// margin-top: 4px;
+				font-weight: 600;
+				// font-style: italic;
+				font-size: 13px;
+				position: relative;
+				text-align: left !important;
+				&:before {
+					content: "";
+					position: absolute;
+					top: 2px;
+					left: 0;
+					width: 16px;
+					height: 16px;
+					background: url("../../assets/images/icon_info.png") center no-repeat;
+					background-size: 100% 100%;
+				}
+
+				img {
+					width: 20px;
+					margin-right: 10px;
+				}
+				padding-left: -1.5rem !important;
+			}
+
+			input {
+				width: 100%;
+				background-size: 100% 100%;
+
+				padding: 0 0.75rem;
+				// border: 1px solid #2e0d3b !important;
+				outline: none;
+				border-radius: 50px;
+				// text-align: center;
+				height: 40px;
+				// color: #000000;
+				transition: all ease 0.5s;
+				line-height: 2;
+				font-weight: bold;
+				outline: none;
+				font-size: 15px;
+				background-color: #fff;
+
+				:disabled {
+					background-color: #ccc;
+				}
+
+				&::-webkit-input-placeholder {
+					color: rgb(243 100 68);
+				}
+
+				&::-moz-placeholder {
+					/* Firefox 19+ */
+					color: rgb(243 100 68);
+				}
+
+				&:-ms-input-placeholder {
+					/* IE 10+ */
+					color: rgb(243 100 68);
+				}
+
+				&:-moz-placeholder {
+					/* Firefox 18- */
+					color: rgb(243 100 68);
+				}
+
+				&:focus {
+					border: 2px solid var(--primary) !important;
+				}
+			}
+
+			textarea {
+				width: 100%;
+				background-size: 100% 100%;
+				padding: 0 0.75rem;
+				outline: none;
+				transition: all ease 0.5s;
+				line-height: 2;
+				font-weight: bold;
+				outline: none;
+				font-size: 15px;
+				background-color: #fff;
+				&:focus {
+					border: 2px solid var(--primary) !important;
+					outline: none !important;
+				}
+				&::-webkit-input-placeholder {
+					color: rgb(243 100 68);
+				}
+
+				&::-moz-placeholder {
+					/* Firefox 19+ */
+					color: rgb(243 100 68);
+				}
+
+				&:-ms-input-placeholder {
+					/* IE 10+ */
+					color: rgb(243 100 68);
+				}
+
+				&:-moz-placeholder {
+					/* Firefox 18- */
+					color: rgb(243 100 68);
+				}
+			}
+
+			select {
+				padding: 0 2px;
+			}
+
+			input[type="checkbox"] + label:hover,
+			input[type="radio"] + label:hover {
+				cursor: pointer;
+			}
+
+			input[type="checkbox"] + label span,
+			input[type="radio"] + label span {
+				display: inline-block;
+				vertical-align: middle;
+				background: transparent;
+				cursor: pointer;
+				border-radius: 100%;
+				border: 2px solid white;
+				width: 20px;
+				height: 20px;
+				transition: all ease 1s;
+				background: transparent;
+			}
+
+			input[type="checkbox"] + label span,
+			input[type="radio"] + label span {
+				content: "";
+			}
+
+			input[type="checkbox"]:checked + label span,
+			input[type="radio"]:checked + label span {
+				background: url("../../assets/images/checkbox.png") center no-repeat;
+				background-size: 110%;
+			}
+
+			.react-select-container {
+				position: relative;
+
+				&::before {
+					width: 16px;
+					height: 16px;
+					display: block;
+					content: "";
+					position: absolute;
+					top: 50%;
+					right: 1.5rem;
+					transform: translateY(-50%);
+					background: url("../../assets/images/icon_select.png") center no-repeat;
+					background-size: 100%;
+					z-index: 22;
+				}
+			}
+
+			.react-select__control {
+				border-radius: 50px;
+				height: 40px;
+				overflow: hidden;
+
+				.react-select__value-container {
+					padding: 0 1rem !important;
+				}
+
+				.react-select__input-container {
+					margin: 0 !important;
+					padding: 0 !important;
+					width: 100%;
+				}
+
+				.react-select__placeholder {
+					color: rgb(243 100 68);
+					margin: 0 !important;
+					font-size: 1rem;
+					font-weight: bold;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					text-align: center;
+				}
+
+				.react-select__single-value {
+					color: rgb(243 100 68);
+					text-align: center;
+					font-size: 1rem;
+					font-weight: bold;
+					margin: 0;
+					padding: 0 1rem 0 0 !important;
+					line-height: 40px;
+				}
+
+				.react-select__indicators {
+					opacity: 0;
+					position: absolute;
+					color: rgb(243 100 68) !important;
+				}
+
+				.react-select__input {
+					border: none !important;
+
+					&:focus {
+						border: none !important;
+					}
+				}
+
+				.react-select__indicator-separator {
+					color: blue;
+				}
+			}
+
+			.react-select__menu {
+				z-index: 222 !important;
+				color: black !important;
+				background: #fff !important;
+
+				.react-select__option {
+					color: #333 !important;
+					background-color: #fff !important;
+				}
+
+				.react-select__option--is-selected {
+					// color: #8d050a !important;
+					// background-color: #fff !important;
+					/* optional: soft red background */
+				}
+				.react-select__option--is-focused {
+					background-color: #ffadad !important;
+					color: #8d050a !important;
+				}
+			}
+		}
+	}
+
+	.zaui-select {
+		position: relative !important;
+		border: none;
+		margin: 0;
+
+		.zaui-input-affix-wrapper {
+			position: relative;
+			margin: 0 !important;
+			border-radius: 0 !important;
+			background-color: transparent !important;
+			border: none !important;
+
+			&::before {
+				width: 16px;
+				height: 16px;
+				display: block;
+				content: "";
+				position: absolute;
+				top: 50%;
+				right: 1.5rem;
+				transform: translateY(-50%);
+				background: url("../../assets/images/icon_select.png") center no-repeat;
+				background-size: 100%;
+				z-index: 22;
+			}
+		}
+
+		input {
+			border: none !important;
+			height: 40px;
+		}
+
+		.zaui-input-group-addon,
+		.zaui-input-suffix {
+			display: none !important;
+		}
+	}
+
+	.zaui-input-status-success svg {
+		display: none !important;
+	}
+
+	.note-alert {
+		text-align: center;
+		color: rgba(253, 239, 166, 1);
+		font-size: 12px;
+	}
+	.captcha-cs {
+		display: inline;
+	}
 }
 @keyframes lineExpand {
 	from {

@@ -35,6 +35,7 @@ export enum MESSAGE_TEMPLATES {
 	USER_NOT_PG = `<h4 class="bold">Không thành công!</h4><p>Số điện thoại đăng kí không phải dành cho PG. Vui lòng kiểm tra lại</p>`,
 	LIMIT_SIZE_FILE_UPLOAD = `<p>Hình ảnh bạn chọn phải có dung dượng nhỏ hơn 5MB!</p>`,
 	CAN_NOT_JOIN_CAMPAIGN = `<p>Tài khoản của bạn không thể tham gia thực hiện các chức năng của chương trình! Vui lòng liên hệ với ban quản trị để biết thêm chi tiết.</p>`,
+	THANKYOU = `<p>Cảm ơn bạn đã gửi những lời yêu thương đến dâu rể.</p>`,
 }
 
 export const loadMyMessage = (template: MESSAGE_TEMPLATES, params: CommonFields): string => {

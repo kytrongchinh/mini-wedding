@@ -1,5 +1,5 @@
 import useSeo from "@/hooks/useSeo";
-import { CommonForm, CommonProps, CommonState } from "@/types/interface";
+import { CommonProps, CommonState } from "@/types/interface";
 import React, { FC, useEffect, useReducer, useState } from "react";
 import { stagger, useAnimate } from "framer-motion";
 import _ from "lodash";
@@ -8,7 +8,6 @@ import { useRecoilState } from "recoil";
 import { loadingAtom } from "@/stores";
 import { convertPage } from "@/utils/base";
 import Pagination from "@/components/Pagination/Pagination";
-import { FieldErrors, useForm } from "react-hook-form";
 import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 import { MY_ROUTERS } from "@/types/enums";
@@ -44,17 +43,7 @@ const MesagePage: FC<CommonProps> = () => {
 	const navigate = useNavigate();
 	const [scope, animate] = useAnimate();
 	const [, setLoading] = useRecoilState(loadingAtom);
-	const [myKeyword, setMykeyword] = useState("");
-	const {
-		register,
-		handleSubmit,
-		formState,
-		formState: { errors },
-		setError,
-		setValue,
-		clearErrors,
-		getValues,
-	} = useForm({ shouldFocusError: true });
+
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
@@ -104,13 +93,27 @@ const MesagePage: FC<CommonProps> = () => {
 					<h2 className="timeline-title  tracking-wide mb-9 text-center">WEDDING</h2>
 					<h2 className="mtitle-timeline timeline-title  tracking-wide mb-4 text-center">Messages</h2>
 				</div>
-
+				<div className="relative flex justify-center items-center text-sm md:text-base text-center w-full gap-2">
+					<div className="w-full">
+						<button onClick={() => navigate(MY_ROUTERS.CREATE_MESSAGE)} className="w-full text-center underline px-0 pt-5 m-auto rounded-lg">
+							💌💌💌 Gửi lời chúc tới dâu rể
+						</button>
+					</div>
+				</div>
 				<div className="p-4">
-					<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+					<div className="grid grid-cols-1">
 						{list?.items?.length > 0 &&
 							list?.items.map((item: CommonState, index: number) => (
-								<div key={index} className="relative cursor-pointer">
-									<p>{item?.content}</p>
+								<div key={index} className="relative cursor-pointer p-2">
+									<div className="flex flex-col relative">
+										<div className={` timeline-name mb-[3px] ${index % 2 === 0 ? "self-end text-right" : "self-start text-left"}`}>
+											<span className="underline">❤️❤️❤️ {item?.from}:</span>
+											<span className="underline decoration-dotted"> {item?.name}</span>
+										</div>
+										<div className={`bg-[#f5f1df] p-3 ${index % 2 === 0 ? "rounded-lg rounded-tr-none" : "rounded-lg rounded-tl-none"}  shadow-sm text-center`}>
+											{item?.content}
+										</div>
+									</div>
 								</div>
 							))}
 					</div>

@@ -89,6 +89,7 @@ export interface AxiosData {
 export interface MenuItem {
 	id: number;
 	name?: string;
+	icon?: any;
 	img: string;
 	img_active: string;
 	path: string;

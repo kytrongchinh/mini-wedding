@@ -18,12 +18,16 @@
 			inset: 0 !important;
 			width: 100%;
 			max-width: 400px;
-			padding: 27px 20px !important;
+			padding: 15px 20px !important;
 			margin: 0 auto;
 			border: NONE !important;
 			display: flex;
 			align-items: flex-start;
 			background-color: transparent !important;
+			.content {
+				padding: 0px !important;
+				font-size: 1rem !important;
+			}
 
 			.modal {
 				width: 100%;
@@ -35,29 +39,6 @@
 				&.secondary {
 					.md-content {
 						background: var(--secondary);
-					}
-				}
-
-				&.score {
-					.md-content {
-						// background: url("@/assets/images/31.png") center no-repeat;
-						background-size: cover;
-
-						.text {
-							margin-top: 35%;
-							padding: 40px 20px 20px;
-
-							.get-score {
-								color: var(--primary);
-								font-size: 2.25em;
-								font-weight: bold;
-								padding: 0 4px;
-
-								img {
-									width: 20px;
-								}
-							}
-						}
 					}
 				}
 
@@ -134,23 +115,15 @@
 					border: 1px solid black;
 					box-shadow: inset 5px 4px 5px 0 rgba(255, 255, 255, 0.7);
 
-					.text {
-						padding: 40px 20px;
+					p {
+						font-size: 0.875em;
+						color: var(--primary);
+						line-height: 1.2;
+						text-align: center;
+						margin: 0 0 12px 0;
 
-						p {
-							font-size: 0.875em;
-							color: black;
-							line-height: 1.2;
-							text-align: center;
-							margin: 0 0 12px 0;
-
-							&:last-child {
-								margin: 0;
-							}
-						}
-
-						strong {
-							font-weight: bold;
+						&:last-child {
+							margin: 0;
 						}
 					}
 				}

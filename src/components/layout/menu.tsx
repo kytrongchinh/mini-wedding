@@ -14,12 +14,14 @@ import { campaignAtom } from "@/stores/campaign";
 
 import { MenuItem } from "@/types/interface";
 import { SVG } from "../Image";
+import { Icon } from "zmp-ui";
 //prettier-ignore
 const list: MenuItem[] = [
 	{
 		id: 1,
 		name: "Thiệp",
 		img: "HOME",
+		icon:"zi-star",
 		img_active: "HOME_ACTIVE",
 		path: MY_ROUTERS.HOME,
 		activePaths:[MY_ROUTERS.HOME]
@@ -27,6 +29,7 @@ const list: MenuItem[] = [
 	{
 		id: 2,
 		name: "Ảnh cưới",
+		icon:"zi-photo",
 		img: "SCAN",
 		img_active: "SCAN_ACTIVE",
 		path: `/shares${MY_ROUTERS.ALBUM}`,
@@ -36,6 +39,7 @@ const list: MenuItem[] = [
 	{
 		id: 3,
 		name: "Ảnh tiệc",
+		icon:"zi-add-photo",
 		img: "DOC",
 		img_active: "DOC_ACTIVE",
 		path: `/shares${MY_ROUTERS.PHOTO}`,
@@ -44,6 +48,7 @@ const list: MenuItem[] = [
 	{
 		id: 4,
 		name: "Lời chúc",
+		icon:"zi-chat",
 		img: "DOC",
 		img_active: "DOC_ACTIVE",
 		path: MY_ROUTERS.MESSAGE,
@@ -149,8 +154,9 @@ const Menu = () => {
 					{list.map((item) => (
 						<button key={item.id} onClick={() => handleGoto(item)} className={clsx({ active: isActive(item.activePaths) }, "menu__item ")}>
 							{/* <img src={isActive(item.activePaths) ? item?.img_active : item?.img} /> */}
-							<SVG type={isActive(item.activePaths) ? item?.img_active : item?.img} />
-							<span className="text-sm uppercase">{item.name}</span>
+							{/* <SVG type={isActive(item.activePaths) ? item?.img_active : item?.img} /> */}
+							<Icon icon={item?.icon} />
+							<span className="text-[10px] uppercase">{item.name}</span>
 						</button>
 					))}
 				</div>

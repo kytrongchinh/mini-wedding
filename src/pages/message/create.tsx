@@ -11,15 +11,18 @@ import Pagination from "@/components/Pagination/Pagination";
 import { FieldErrors, useForm } from "react-hook-form";
 import "./styles.scss";
 import { useNavigate } from "react-router-dom";
-import { MY_ROUTERS } from "@/types/enums";
+import { BUTTON_NAME, MODAL_NAME, MY_ROUTERS } from "@/types/enums";
 import ButtonDefault from "@/components/ButtonDefault/ButtonDefault";
 import { inviteeAtom } from "@/stores/invitee";
 import Select from "react-select";
+import { modalAtom } from "@/stores/modal";
+import { MESSAGE_TEMPLATES } from "@/types/messages";
 const options = [
-	{ value: "nguoi-than-co-dau", label: "Người thân cô dâu" },
-	{ value: "nguoi-than-chu-re", label: "Người thân chú rể" },
-	{ value: "ban-co-dau", label: "Bạn cô dâu" },
-	{ value: "ban-chu-re", label: "Bạn chú rể" },
+	{ value: "Bạn", label: "Bạn" },
+	{ value: "Em", label: "Em" },
+	{ value: "Anh", label: "Anh" },
+	{ value: "Chị", label: "Chị" },
+	{ value: "Người thân", label: "Người thân" },
 ];
 
 const CreateMesagePage: FC<CommonProps> = () => {
@@ -29,7 +32,7 @@ const CreateMesagePage: FC<CommonProps> = () => {
 	const [, setLoading] = useRecoilState(loadingAtom);
 	const [myKeyword, setMykeyword] = useState("");
 	const invitee = useRecoilValue(inviteeAtom);
-
+	const [com_modal, setComModal] = useRecoilState(modalAtom);
 	const {
 		register,
 		handleSubmit,
@@ -56,6 +59,16 @@ const CreateMesagePage: FC<CommonProps> = () => {
 				invitee: invitee?._id,
 			};
 			const createData = await myapi.sendMessage(dataSend);
+			if (createData?.status == 200 && createData?.result) {
+				setComModal((prevState) => ({
+					...prevState,
+					name: MODAL_NAME.DEFAULT,
+					open: true,
+					content: MESSAGE_TEMPLATES.THANKYOU,
+					buttonName: BUTTON_NAME.CLOSE,
+				}));
+				navigate(MY_ROUTERS.MESSAGE, { replace: true });
+			}
 
 			setLoading(false);
 		} catch (error) {}
@@ -77,13 +90,15 @@ const CreateMesagePage: FC<CommonProps> = () => {
 					<h2 className="mtitle-timeline timeline-title  tracking-wide mb-4 text-center">Messages</h2>
 				</div>
 
-				<div className="form animUp p-6 bg-slate-300 m-3">
+				<div className="form animUp p-6 bg-[#dfdbc3] m-3 rounded-md">
 					<form onSubmit={handleSubmit(onSubmit, onError)} className="">
 						{!invitee && (
 							<>
 								<div className="form-groups">
 									<div className="form-groups-w">
-										<label htmlFor="">Tên người gửi</label>
+										<label htmlFor="" className="uppercase">
+											Tên người gửi
+										</label>
 										<input
 											type="text"
 											{...register("name", {
@@ -92,16 +107,24 @@ const CreateMesagePage: FC<CommonProps> = () => {
 												pattern: /[a-zA-Z0-9]/,
 											})}
 											maxLength={30}
-											placeholder=""
-											className="text-red-500 text-[1.2rem] !rounded-lg"
+											placeholder="Tên người gửi"
+											className="!text-red-500 text-[1.2rem] !rounded-lg"
 										/>
 									</div>
 									{errors.name && <div className="error text-sm text-red-500 italic">Vui lòng quét mã code</div>}
 								</div>
 								<div className="form-groups mt-2">
 									<div className="form-groups-w">
-										<label htmlFor="">Gửi từ</label>
-										<Select onChange={handleSelect} options={options} className="react-select-container" classNamePrefix="react-select" placeholder="" />
+										<label htmlFor="" className="uppercase">
+											Gửi từ
+										</label>
+										<Select
+											onChange={handleSelect}
+											options={options}
+											className="react-select-container"
+											classNamePrefix="react-select"
+											placeholder="Bạn là..."
+										/>
 										<input
 											type="hidden"
 											{...register("from", {
@@ -115,7 +138,9 @@ const CreateMesagePage: FC<CommonProps> = () => {
 						)}
 						<div className="form-groups mt-2">
 							<div className="form-groups-w">
-								<label htmlFor="">Những lời yêu thương</label>
+								<label htmlFor="" className="uppercase">
+									Những lời yêu thương
+								</label>
 								<textarea
 									{...register("content", {
 										required: true,
@@ -124,7 +149,7 @@ const CreateMesagePage: FC<CommonProps> = () => {
 										pattern: /[a-zA-Z0-9]/,
 									})}
 									maxLength={300}
-									placeholder=""
+									placeholder="Lời yêu thương"
 									className="text-red-500 w-full p-2 text-[1.2rem] rounded-lg"
 									rows={5}
 								/>

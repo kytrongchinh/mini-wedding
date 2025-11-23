@@ -86,7 +86,7 @@ const HomePage: FC<CommonProps> = () => {
 						</div>
 						<p className="text-xs !mt-5">TRÂN TRỌNG KÍNH MỜI</p>
 						{invitee?.name && (
-							<h3 className="text-lg font-semibold mt-2">
+							<h3 className="text-lg font-semibold mt-2 underline decoration-dotted">
 								{invitee?.title} {invitee?.name}
 							</h3>
 						)}

@@ -10,8 +10,8 @@ const Pagination = (props: CommonProps) => {
 	return (
 		<ReactPaginate
 			breakLabel="..."
-			// nextLabel=""
-			// previousLabel=""
+			nextLabel=">"
+			previousLabel="<"
 			onPageChange={onPageChange}
 			pageRangeDisplayed={2}
 			pageCount={totalPage}

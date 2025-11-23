@@ -18,7 +18,7 @@ import { SVG } from "../Image";
 const list: MenuItem[] = [
 	{
 		id: 1,
-		name: "Trang chủ",
+		name: "Thiệp",
 		img: "HOME",
 		img_active: "HOME_ACTIVE",
 		path: MY_ROUTERS.HOME,
@@ -26,29 +26,30 @@ const list: MenuItem[] = [
 	},
 	{
 		id: 2,
-		name: "Quét mã",
+		name: "Ảnh cưới",
 		img: "SCAN",
 		img_active: "SCAN_ACTIVE",
-		path: "#",
-			activePaths:[""]
+		path: `/shares${MY_ROUTERS.ALBUM}`,
+		activePaths:[`/shares${MY_ROUTERS.ALBUM}`]
 	},
 		
 	{
 		id: 3,
-		name: "Thể lệ",
+		name: "Ảnh tiệc",
 		img: "DOC",
 		img_active: "DOC_ACTIVE",
-		path: MY_ROUTERS.TNC,
-		activePaths:[MY_ROUTERS.TNC]
+		path: `/shares${MY_ROUTERS.PHOTO}`,
+		activePaths:[`/shares${MY_ROUTERS.PHOTO}`]
 	},
 	{
 		id: 4,
-		name: "Cá nhân",
-		img: "USER",
-		img_active: "USER_ACTIVE",
-		path: MY_ROUTERS.PROFILE,
-		activePaths:[MY_ROUTERS.PROFILE]
+		name: "Lời chúc",
+		img: "DOC",
+		img_active: "DOC_ACTIVE",
+		path: MY_ROUTERS.MESSAGE,
+		activePaths:[MY_ROUTERS.MESSAGE]
 	},
+	
 ];
 
 const Menu = () => {

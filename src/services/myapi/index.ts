@@ -341,5 +341,164 @@ class MyApi extends CallApi {
 			};
 		}
 	}
+
+	async getAlbums(page = 0, limit = 10) {
+		try {
+			const url = `${this.my_url}/album?page=${page}&limit=${limit}`;
+			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+
+			const result = await this.http_request<MyApiResponse<CommonData>>(params);
+			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
+				throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
+			}
+			return result?.result;
+		} catch (error) {
+			console.log("Error getAlbums :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async getAlbumDetail(id: string) {
+		try {
+			const url = `${this.my_url}/album/detail?id=${id}`;
+			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+
+			const result = await this.http_request<MyApiResponse<CommonData>>(params);
+			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
+				throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
+			}
+			return result?.result;
+		} catch (error) {
+			console.log("Error getAlbumDetail :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async getPhotos(tags = "", page = 0, limit = 10) {
+		try {
+			const url = `${this.my_url}/photo?tags=${tags}&page=${page}&limit=${limit}`;
+			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+
+			const result = await this.http_request<MyApiResponse<CommonData>>(params);
+			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
+				throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
+			}
+			return result?.result;
+		} catch (error) {
+			console.log("Error getPhotos :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async getPhotoDetail(id: string) {
+		try {
+			const url = `${this.my_url}/photo/detail?id=${id}`;
+			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+
+			const result = await this.http_request<MyApiResponse<CommonData>>(params);
+			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
+				throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
+			}
+			return result?.result;
+		} catch (error) {
+			console.log("Error getPhotoDetail :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async getInvite(name: string) {
+		try {
+			const url = `${this.my_url}/invitee/detail?slug_name=${name}`;
+			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
+			if (result?.success && result?.data) {
+				return result?.data;
+			}
+			return result?.errors;
+		} catch (error) {
+			console.log("Error getInvite :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async sendMessage(data: AxiosData) {
+		try {
+			const url = `${this.my_url}/message/create`;
+			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.POST, data };
+
+			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
+			if (result?.success && result?.data) {
+				return result?.data;
+			}
+			return result?.errors;
+		} catch (error) {
+			console.log("Error sendMessage :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async getMessages(page = 0, limit = 10) {
+		try {
+			const url = `${this.my_url}/message?page=${page}&limit=${limit}`;
+			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+
+			const result = await this.http_request<MyApiResponse<CommonData>>(params);
+			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
+				throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
+			}
+			return result?.result;
+		} catch (error) {
+			console.log("Error getMessages :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async getMessageDetail(id: string) {
+		try {
+			const url = `${this.my_url}/message/detail?id=${id}`;
+			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+
+			const result = await this.http_request<MyApiResponse<CommonData>>(params);
+			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
+				throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
+			}
+			return result?.result;
+		} catch (error) {
+			console.log("Error getMessageDetail :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
 }
 export default new MyApi();

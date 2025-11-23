@@ -101,6 +101,10 @@ export enum MY_ROUTERS {
 	SCAN = "/qr",
 	SCAN_ID = "/qr/:code",
 	PROFILE = "/profile",
+	ALBUM = "/album",
+	PHOTO = "/photo",
+	MESSAGE = "/message",
+	CREATE_MESSAGE = "/create-message",
 	POLICY = "/policy",
 	LOGOUT = "/logout",
 }

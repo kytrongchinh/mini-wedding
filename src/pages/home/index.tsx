@@ -5,26 +5,47 @@ import { stagger, useAnimate } from "framer-motion";
 import ButtonDefault from "@/components/ButtonDefault/ButtonDefault";
 import "./style.scss";
 import useAuth from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import _ from "lodash";
 
 import cunghy from "@/assets/images/mi-mie/cung-hy.png";
 import corner from "@/assets/images/mi-mie/frame-1.png";
 import flower from "@/assets/images/mi-mie/flower.png";
 import { MY_ROUTERS } from "@/types/enums";
+import { useRecoilState } from "recoil";
+import { paramsAtom } from "@/stores/params";
+import myapi from "@/services/myapi";
+import { inviteeAtom } from "@/stores/invitee";
+import storage from "@/utils/storage";
 
 const HomePage: FC<CommonProps> = () => {
 	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
-	const { user, handleLogin, handleLogout } = useAuth();
 	const navigate = useNavigate();
 	const [scope, animate] = useAnimate();
-
+	const params = useParams();
+	const [mparams, setMParams] = useRecoilState(paramsAtom);
+	const [searchParams] = useSearchParams();
+	const name = searchParams.get("name") || params?.name || mparams?.name;
+	const [invitee, setInvitee] = useRecoilState(inviteeAtom);
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
 
 		// handleLogout();
+		loadInvite();
 	}, []);
+
+	const loadInvite = async () => {
+		try {
+			if (name) {
+				const myData = await myapi.getInvite(name);
+				if (myData?.status == 200 && myData?.result?.data) {
+					setInvitee(myData?.result?.data?.item);
+					await storage.setStorage("inviteeInfo", myData?.result?.data?.item);
+				}
+			}
+		} catch (error) {}
+	};
 
 	return (
 		<div className="page-content homepage" ref={scope}>
@@ -42,7 +63,7 @@ const HomePage: FC<CommonProps> = () => {
 					<img src={corner} className="absolute bottom-0 left-0 w-12 h-12 scale-y-[-1]" alt="corner bottom left" />
 					<img src={corner} className="absolute bottom-0 right-0 w-12 h-12 scale-[-1]" alt="corner bottom right" />
 
-					<div className="relative z-10 text-center px-6 py-10">
+					<div className="relative z-10 text-center px-6 py-10" onClick={() => navigate(MY_ROUTERS.WEDDING)}>
 						<div className="w-1/3 m-auto">
 							<div className="img animUp">
 								<img src={cunghy} alt="" />
@@ -64,9 +85,13 @@ const HomePage: FC<CommonProps> = () => {
 							</div>
 						</div>
 						<p className="text-xs !mt-5">TRÂN TRỌNG KÍNH MỜI</p>
-						{/* <h3 className="text-lg font-semibold mt-2">Gia đình Dì Xuân</h3> */}
-						<div className="p-5 animUp">
-							<ButtonDefault text="Tham Gia Ngay" buttonType="secondary" align="center" onClick={() => navigate(MY_ROUTERS.WEDDING)} />
+						{invitee?.name && (
+							<h3 className="text-lg font-semibold mt-2">
+								{invitee?.title} {invitee?.name}
+							</h3>
+						)}
+						<div className="p-5 animUp z-10 w-full">
+							<ButtonDefault text="Xem thiệp" buttonType="secondary z-10" align="center" onClick={() => navigate(MY_ROUTERS.WEDDING)} />
 						</div>
 					</div>
 				</div>

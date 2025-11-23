@@ -5,7 +5,6 @@
 	color: rgb(164, 28, 28);
 	.container {
 		padding: 10px 2px;
-		padding-bottom: 100px !important;
 
 		position: relative;
 		overflow: hidden;
@@ -48,7 +47,16 @@
 			color: rgb(164, 28, 28);
 			position: relative;
 		}
+		.watermark {
+			font-family: var(--f-best);
+			span {
+				color: var(--light);
+				// color: rgb(164, 28, 28);
+				opacity: 0.3;
+			}
+		}
 	}
+	
 }
 @keyframes lineExpand {
 	from {

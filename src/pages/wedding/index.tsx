@@ -9,6 +9,7 @@ import chande from "@/assets/images/mi-mie/chande.png";
 import date from "@/assets/images/mi-mie/date.png";
 import { useNavigate } from "react-router-dom";
 import { MY_ROUTERS } from "@/types/enums";
+import swiper_img from "@/assets/images/swipe.png";
 
 const WeddingPage: FC<CommonProps> = () => {
 	const navigate = useNavigate();
@@ -21,7 +22,15 @@ const WeddingPage: FC<CommonProps> = () => {
 	}, []);
 
 	return (
-		<div className="page-content wedding" ref={scope}>
+		<div className="page-content wedding relative" ref={scope}>
+			<div className="swipper w-10 absolute top-1/2 left-1 -translate-y-1/2 swipe-left-right z-10" onClick={() => navigate(MY_ROUTERS.HOME)}>
+				<img className="swipper-img w-full" src={swiper_img} />
+			</div>
+
+			<div className="swipper w-10 absolute top-1/2 right-1 -translate-y-1/2 swipe-right-left z-10" onClick={() => navigate(MY_ROUTERS.WEDDING_TIMELINE)}>
+				<img className="swipper-img w-full !rotate-90" src={swiper_img} />
+			</div>
+
 			<div className="container animUp w-full max-w-md mx-auto">
 				<h2 className="wedding-title  tracking-wide mb-4 text-center">LỄ VU QUY</h2>
 
@@ -78,7 +87,7 @@ const WeddingPage: FC<CommonProps> = () => {
 					</div> */}
 
 					<div className="w-[55%] m-auto">
-						<div className="img animUp" onClick={() => navigate(MY_ROUTERS.WEDDING_TIMELINE)}>
+						<div className="img animUp">
 							<img src={date} alt="" />
 						</div>
 					</div>

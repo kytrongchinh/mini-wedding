@@ -11,10 +11,14 @@ import bride from "@/assets/images/mi-mie/bride.png";
 import perid from "@/assets/images/mi-mie/perid.png";
 import groom from "@/assets/images/mi-mie/groom.png";
 import chuhy from "@/assets/images/mi-mie/chu-hy.png";
+import { useRecoilValue } from "recoil";
+import { inviteeAtom } from "@/stores/invitee";
 
 const TimelinePage: FC<CommonProps> = () => {
 	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const [scope, animate] = useAnimate();
+
+	const invitee = useRecoilValue(inviteeAtom);
 
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
@@ -93,7 +97,14 @@ const TimelinePage: FC<CommonProps> = () => {
 						<div className="animUp absolute right-[-5px] top-[-40px]">
 							<img src={heart} alt="" className="w-[50%] opacity-80" />
 						</div>
-						Sự hiện hiện của<span className="text-sm font-bold italic "> XXX</span>
+						Sự hiện hiện của
+						{invitee?.name && (
+							<span className="text-sm font-bold italic ">
+								{" "}
+								{invitee?.title} {invitee?.name}
+							</span>
+						)}
+						{!invitee?.name && <span className="text-sm font-bold italic ">Quý khách</span>}
 					</div>
 					<div className="text-sm">là niềm vinh hạnh của gia đình.</div>
 				</div>

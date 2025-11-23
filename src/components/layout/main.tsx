@@ -35,7 +35,7 @@ import adtimabox from "@/services/adtimabox";
 interface MParams {
 	[key: string]: any;
 }
-const DefaultLayout: FC = () => {
+const MainLayout: FC = () => {
 	const navigate = useNavigate();
 	const seo = useRecoilValue(seoAtom);
 	useCheckSystem();
@@ -204,9 +204,9 @@ const DefaultLayout: FC = () => {
 			<div className={clsx("container", location.pathname === "/" && "")}>
 				<Outlet />
 			</div>
-			{/* <Menu /> */}
+			<Menu />
 		</>
 	);
 };
 
-export default DefaultLayout;
+export default MainLayout;

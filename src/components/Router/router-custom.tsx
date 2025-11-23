@@ -11,11 +11,16 @@ import useAuth from "@/hooks/useAuth";
 import Form from "@/pages/form";
 
 import Profile from "@/pages/profile";
-import TnC from "@/pages/tnc";
+import TnC from "@/pages/message";
 import Logout from "@/pages/logout";
 import AuthRoute from "../middleware/auth-route";
 import WeddingPage from "@/pages/wedding";
 import TimelinePage from "@/pages/timeline";
+import AlbumPage from "@/pages/album";
+import PhotoPage from "@/pages/photo";
+import MainLayout from "../layout/main";
+import MesagePage from "@/pages/message";
+import CreateMesagePage from "@/pages/message/create";
 
 export const RouterCustom: FC = () => {
 	const { user } = useAuth();
@@ -27,30 +32,33 @@ export const RouterCustom: FC = () => {
 			children: [
 				{ path: MY_ROUTERS_FULL.HOME.NAME, element: <HomePage /> },
 				{ path: MY_ROUTERS_FULL.WEDDING.NAME, element: <WeddingPage /> },
-				{ path: MY_ROUTERS_FULL.WEDDING_TIMELINE.NAME, element: <TimelinePage /> },
+				// { path: MY_ROUTERS_FULL.WEDDING_TIMELINE.NAME, element: <TimelinePage /> },
 				{ path: MY_ROUTERS_FULL.LOGOUT.NAME, element: <Logout /> },
+				{ path: MY_ROUTERS_FULL.ALBUM.NAME, element: <AlbumPage /> },
+				{ path: MY_ROUTERS_FULL.PHOTO.NAME, element: <PhotoPage /> },
+				{ path: MY_ROUTERS_FULL.CREATE_MESSAGE.NAME, element: <CreateMesagePage /> },
 				{ path: MY_ROUTERS_FULL.TNC.NAME, element: <TnC /> },
-
-				// { path: MY_ROUTERS_FULL.FORM_FILL_INFO.NAME, element: <Form /> },
-				// { path: MY_ROUTERS_FULL.PROFILE.NAME, element: <Profile /> },
-
-				// {
-				// 	path: MY_ROUTERS_FULL.SCAN_ID.NAME,
-				// 	element: (
-				// 		<AuthRoute user={user}>
-				// 			<Form />
-				// 		</AuthRoute>
-				// 	),
-				// },
-				// {
-				// 	path: MY_ROUTERS_FULL.SCAN.NAME,
-				// 	element: (
-				// 		<AuthRoute user={user}>
-				// 			<Form />
-				// 		</AuthRoute>
-				// 	),
-				// },
 			],
+		},
+		{
+			path: MY_ROUTERS_FULL.WEDDING_TIMELINE.NAME,
+			element: <MainLayout />,
+			children: [{ path: "", element: <TimelinePage /> }],
+		},
+
+		{
+			path: "/shares/",
+			element: <MainLayout />,
+			children: [
+				{ path: MY_ROUTERS_FULL.ALBUM.NAME, element: <AlbumPage /> },
+				{ path: MY_ROUTERS_FULL.PHOTO.NAME, element: <PhotoPage /> },
+			],
+		},
+
+		{
+			path: MY_ROUTERS_FULL.MESSAGE.NAME,
+			element: <MainLayout />,
+			children: [{ path: "", element: <MesagePage /> }],
 		},
 
 		// { path: "/login", element: <TnC /> }, // No layout

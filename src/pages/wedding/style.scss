@@ -36,6 +36,52 @@
 			position: relative;
 		}
 	}
+	.swipper-img {
+		filter: invert(17%) sepia(87%) saturate(2973%) hue-rotate(343deg) brightness(87%) contrast(97%);
+	}
+	@keyframes swipe-left-right {
+		0% {
+			transform: translateY(-50%) translateX(0);
+			opacity: 0.6;
+		}
+		50% {
+			transform: translateY(-50%) translateX(20px);
+			opacity: 0.8;
+		}
+		100% {
+			transform: translateY(-50%) translateX(0);
+			opacity: 0.6;
+		}
+	}
+
+	@keyframes swipe-right-left {
+		0% {
+			transform: translateY(-50%) translateX(0);
+			opacity: 0.6;
+		}
+		50% {
+			transform: translateY(-50%) translateX(-20px);
+			opacity: 0.8;
+		}
+		100% {
+			transform: translateY(-50%) translateX(0);
+			opacity: 0.6;
+		}
+	}
+
+	.swipper-img {
+		transform-origin: center center; /* quan trọng để rotate không bị lệch */
+	}
+
+	.swipe-left-right {
+		// animation: swipe-left-right 1.2s ease-in-out infinite;
+		animation: swipe-left-right 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+	}
+
+	.swipe-right-left {
+		// animation: swipe-right-left 1.2s ease-in-out infinite;
+		animation: swipe-right-left 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+	}
 }
 @keyframes lineExpand {
 	from {

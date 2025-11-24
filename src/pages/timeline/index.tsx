@@ -94,8 +94,8 @@ const TimelinePage: FC<CommonProps> = () => {
 
 						<div className="section mt-40">
 							<p className="text-base !text-[14px]">{timline?.groom?.party?.time || "11:30 25.12.2025 "}</p>
-							<h3 className="text-[#8B0000] font-bold text-lg">{timline?.groom?.party?.time || "TIỆC RƯỢU"}</h3>
-							<p className="text-sm mt-1 italic">{timline?.groom?.party?.time || "Nhà hàng Thanh Hường "}</p>
+							<h3 className="text-[#8B0000] font-bold text-lg">{timline?.groom?.party?.name || "TIỆC RƯỢU"}</h3>
+							<p className="text-sm mt-1 italic">{timline?.groom?.party?.at || "Nhà hàng Thanh Hường "}</p>
 						</div>
 					</div>
 				</div>

@@ -1,6 +1,6 @@
 import useSeo from "@/hooks/useSeo";
-import { CommonProps } from "@/types/interface";
-import React, { FC, useEffect } from "react";
+import { CommonProps, CommonState } from "@/types/interface";
+import React, { FC, useEffect, useState } from "react";
 import { stagger, useAnimate } from "framer-motion";
 import "./style.scss";
 import _ from "lodash";
@@ -10,16 +10,31 @@ import date from "@/assets/images/mi-mie/date.png";
 import { useNavigate } from "react-router-dom";
 import { MY_ROUTERS } from "@/types/enums";
 import swiper_img from "@/assets/images/swipe.png";
+import { useRecoilValue } from "recoil";
+import { campaignAtom } from "@/stores/campaign";
+import myapi from "@/services/myapi";
 
 const WeddingPage: FC<CommonProps> = () => {
 	const navigate = useNavigate();
-	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const [scope, animate] = useAnimate();
+	const campaignInfo = useRecoilValue(campaignAtom);
+	const [wedding, setWedding] = useState<CommonState>({});
+	useSeo({ title: `${campaignInfo?.wedding?.groom || "Ky Chin"} 囍 ${campaignInfo?.wedding?.bride || "Mi Mie"}`, description: "Welcome to the Home Page of My App!" });
 
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
+		loadWeddingInfo();
 	}, []);
+
+	const loadWeddingInfo = async () => {
+		try {
+			const myData = await myapi.getWeddingInfo();
+			if (myData?.status == 200 && myData?.result?.data) {
+				setWedding(myData?.result?.data);
+			}
+		} catch (error) {}
+	};
 
 	return (
 		<div className="page-content wedding relative" ref={scope}>
@@ -32,27 +47,27 @@ const WeddingPage: FC<CommonProps> = () => {
 			</div>
 
 			<div className="container animUp w-full max-w-md mx-auto">
-				<h2 className="wedding-title  tracking-wide mb-4 text-center">LỄ VU QUY</h2>
+				<h2 className="wedding-title  tracking-wide mb-4 text-center uppercase">{wedding?.name || "Lễ vu quy"}</h2>
 
 				<div className="flex justify-between text-sm md:text-base text-center">
 					<div className="w-1/2">
-						<h3 className="text-[#8B0000] font-bold text-lg">NHÀ GÁI</h3>
+						<h3 className="text-[#8B0000] font-bold text-lg">{wedding?.groom?.name || "NHÀ TRAI"}</h3>
 						<p className="font-semibold">
-							Anh: <span className="uppercase">Trần Xông Pha</span>
+							{wedding?.groom?.farther?.title || "Ông"}: <span className="uppercase">{wedding?.groom?.farther?.name || "Kỷ Trọng Văn"}</span>
 							<br />
-							Bà (Dì): <span className="uppercase">Lê Thị Đồng</span>
+							{wedding?.groom?.mother?.title || "Bà"}: <span className="uppercase">{wedding?.groom?.mother?.name || "Huỳnh Thị Hiệp"}</span>
 						</p>
-						<p className="text-sm mt-1">07 Hoàng Quốc Việt, Đức Lập, Lâm Đồng</p>
+						<p className="text-sm mt-1">{wedding?.groom?.address || "Đội 5, Trà Thung, Phù Mỹ Bắc, Gia Lai"}</p>
 					</div>
 
 					<div className="w-1/2">
-						<h3 className="text-[#8B0000] font-bold text-lg">NHÀ TRAI</h3>
+						<h3 className="text-[#8B0000] font-bold text-lg">{wedding?.bride?.name || "NHÀ GÁI"}</h3>
 						<p className="font-semibold">
-							Ông: <span className="uppercase">Kỷ Trọng Văn</span>
+							{wedding?.bride?.farther?.title || "Anh"}: <span className="uppercase">{wedding?.bride?.farther?.name || "Trần Xông Pha"}</span>
 							<br />
-							Bà: <span className="uppercase">Huỳnh Thị Hiệp</span>
+							{wedding?.bride?.mother?.title || "Bà (Dì)"}: <span className="uppercase">{wedding?.bride?.mother?.name || "Lê Thị Đồng"}</span>
 						</p>
-						<p className="text-sm mt-1">Đội 5, Trà Thung, Phù Mỹ Bắc, Gia Lai</p>
+						<p className="text-sm mt-1">{wedding?.bride?.address || "07 Hoàng Quốc Việt, Đức Lập, Lâm Đồng"}</p>
 					</div>
 				</div>
 				<div className="relative flex justify-center items-center mt-6">
@@ -63,29 +78,11 @@ const WeddingPage: FC<CommonProps> = () => {
 				</div>
 
 				<div className="wedding-name m-6">
-					<div className="text-[30px] text-center">Trọng Chính & Trường Mi</div>
+					<div className="text-[30px] text-center">
+						{campaignInfo?.wedding?.groom || "Ky Chin"} & {campaignInfo?.wedding?.bride || "Mi Mie"}
+					</div>
 				</div>
 				<div className="text-center text-[#8B0000] font-sans mt-6">
-					{/* <div className="flex items-center justify-center mb-2 border-none">
-						<div className="w-[100px] border-t-[1px] border-[#8B0000]"></div>
-						<div className="w-[80px]"></div>
-						<div className="w-[100px] border-t-[1px] border-[#8B0000]"></div>
-					</div>
-
-					<div className="flex justify-center items-center gap-3">
-						<div className="text-3xl md:text-4xl font-bold">21</div>
-						<div className="bg-[#8B0000] text-white rounded-full w-16 h-16 flex flex-col justify-center items-center border border-[#8B0000]">
-							<span className="text-[10px] font-semibold tracking-wide leading-none">THÁNG</span>
-							<span className="text-xl font-bold leading-none">12</span>
-						</div>
-						<div className="text-3xl md:text-4xl font-bold">2025</div>
-					</div>
-					<div className="flex items-center justify-center mt-2">
-						<div className="w-[100px] border-t border-[#8B0000]"></div>
-						<div className="w-[80px]"></div>
-						<div className="w-[100px] border-t border-[#8B0000]"></div>
-					</div> */}
-
 					<div className="w-[55%] m-auto">
 						<div className="img animUp">
 							<img src={date} alt="" />
@@ -93,11 +90,11 @@ const WeddingPage: FC<CommonProps> = () => {
 					</div>
 
 					<div className="text-lg md:text-xl font-semibold tracking-wide mb-1">
-						9:00 <span className="text-sm font-normal">SÁNG</span>
+						{wedding?.time || "9:00"} <span className="text-sm font-normal">{wedding?.at || "SÁNG"}</span>
 					</div>
 
 					{/* Dòng phụ */}
-					<div className="text-sm text-[#9b3030] italic">Nhằm ngày 02.11 Năm Ất Tỵ</div>
+					<div className="text-sm text-[#9b3030] italic">{wedding?.lunar_date || "Nhằm ngày 02.11 Năm Ất Tỵ"}</div>
 				</div>
 			</div>
 		</div>

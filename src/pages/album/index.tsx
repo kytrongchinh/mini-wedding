@@ -1,22 +1,17 @@
 import useSeo from "@/hooks/useSeo";
-import { CommonProps, CommonState } from "@/types/interface";
+import { CommonFields, CommonProps, CommonState } from "@/types/interface";
 import React, { FC, useEffect, useReducer, useState } from "react";
 import { stagger, useAnimate } from "framer-motion";
 import "./style.scss";
 import _ from "lodash";
 import myapi from "@/services/myapi";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { loadingAtom } from "@/stores";
 import { convertPage } from "@/utils/base";
 import Pagination from "@/components/Pagination/Pagination";
-
-const images = [
-	"https://images.unsplash.com/photo-1601758123927-4c34c0f37c63?auto=format&fit=crop&w=400&q=80",
-	"https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=400&q=80",
-	"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80",
-	"https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=400&q=80",
-	"https://images.unsplash.com/photo-1504198458649-3128b932f49b?auto=format&fit=crop&w=400&q=80",
-];
+import { campaignAtom } from "@/stores/campaign";
+import { modalAtom } from "@/stores/modal";
+import { BUTTON_NAME, MODAL_NAME } from "@/types/enums";
 
 type State = {
 	loading: boolean;
@@ -45,9 +40,12 @@ function reducer(state: State, action: Action) {
 	}
 }
 const AlbumPage: FC<CommonProps> = () => {
-	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const [scope, animate] = useAnimate();
 	const [, setLoading] = useRecoilState(loadingAtom);
+	const campaignInfo = useRecoilValue(campaignAtom);
+	useSeo({ title: `${campaignInfo?.wedding?.groom || "Ky Chin"} 囍 ${campaignInfo?.wedding?.bride || "Mi Mie"}`, description: "Welcome to the Home Page of My App!" });
+	const [com_modal, setComModal] = useRecoilState(modalAtom);
+
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
@@ -89,6 +87,16 @@ const AlbumPage: FC<CommonProps> = () => {
 		});
 		setLoading(false);
 	};
+
+	const handleViewImg = (item: CommonFields) => {
+		setComModal((prevState) => ({
+			...prevState,
+			name: MODAL_NAME.VIEW_IMAGE,
+			open: true,
+			content: `https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s1000`,
+			buttonName: BUTTON_NAME.CLOSE,
+		}));
+	};
 	return (
 		<div className="page-content timeline" ref={scope}>
 			<div className="container animUp ">
@@ -104,6 +112,7 @@ const AlbumPage: FC<CommonProps> = () => {
 							list?.items.map((item: CommonState, index: number) => (
 								<div key={index} className="relative cursor-pointer">
 									<img
+										onClick={() => handleViewImg(item)}
 										loading="lazy"
 										src={`https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s500`}
 										alt={`Gallery ${index}`}
@@ -124,7 +133,9 @@ const AlbumPage: FC<CommonProps> = () => {
 				)}
 
 				<div className="timeline-name m-2 opacity-35">
-					<div className="text-[20px] text-center">Trọng Chính & Trường Mi</div>
+					<div className="text-[20px] text-center">
+						{campaignInfo?.wedding?.groom || "Ky Chin"} & {campaignInfo?.wedding?.bride || "Mi Mie"}
+					</div>
 				</div>
 			</div>
 		</div>

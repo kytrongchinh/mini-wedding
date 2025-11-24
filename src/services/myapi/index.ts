@@ -41,7 +41,7 @@ class MyApi extends CallApi {
 	async info() {
 		try {
 			const url = `${this.my_url}/info`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -62,7 +62,7 @@ class MyApi extends CallApi {
 	async login(data: AxiosData) {
 		try {
 			const url = `${this.my_url}/login`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.POST, data: data };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.POST, data: data };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -83,7 +83,7 @@ class MyApi extends CallApi {
 	async getUser(token: string) {
 		try {
 			const url = `${this.my_url}/user`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -103,7 +103,7 @@ class MyApi extends CallApi {
 	async updateUser(token: string, data: AxiosData) {
 		try {
 			const url = `${this.my_url}/user/update`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
 			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
 			if (result?.success && result?.data) {
 				return result?.data;
@@ -122,7 +122,7 @@ class MyApi extends CallApi {
 	async follow(token: string, data: AxiosData) {
 		try {
 			const url = `${this.my_url}/user/follow`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
 				throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
@@ -141,7 +141,7 @@ class MyApi extends CallApi {
 	async myPhoneMiniAPP(token: string, data: AxiosData) {
 		try {
 			const url = `${this.my_url}/user/get-phone-mini`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -162,7 +162,7 @@ class MyApi extends CallApi {
 	async history(token: string, page = 0, limit = 6) {
 		try {
 			const url = `${this.my_url}/code/history?page=${page}&limit=${limit}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -182,7 +182,7 @@ class MyApi extends CallApi {
 	async recaptcha(token: string, type = "") {
 		try {
 			const url = `${this.my_url}/code/recaptcha?type=${type}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -202,7 +202,7 @@ class MyApi extends CallApi {
 	async sendCode(token: string, data: AxiosData) {
 		try {
 			const url = `${this.my_url}/code/send`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
 			// const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			// if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
 			// 	throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
@@ -227,7 +227,7 @@ class MyApi extends CallApi {
 	async storeGift() {
 		try {
 			const url = `${this.my_url}/mini/store`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -247,7 +247,7 @@ class MyApi extends CallApi {
 	async captchaStatus() {
 		try {
 			const url = `${this.my_url}/mini/captcha-status`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -268,7 +268,7 @@ class MyApi extends CallApi {
 	async openGift(token: string, data: AxiosData) {
 		try {
 			const url = `${this.my_url}/gift/open`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
 				throw new Error(`Failed with status code ${result?.status}, data: ${JSON.stringify(result?.result)}, message: ${result?.message}`);
@@ -286,7 +286,7 @@ class MyApi extends CallApi {
 	async confirmGift(token: string, data: AxiosData) {
 		try {
 			const url = `${this.my_url}/gift/confirm`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.POST, data };
 			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
 			if (result?.success && result?.data) {
 				return result?.data;
@@ -305,7 +305,7 @@ class MyApi extends CallApi {
 	async myGift(token: string, page = 0, limit = 6) {
 		try {
 			const url = `${this.my_url}/gift/my-gift?page=${page}&limit=${limit}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -325,7 +325,7 @@ class MyApi extends CallApi {
 	async giftDetail(token: string, winner_id: string) {
 		try {
 			const url = `${this.my_url}/gift/gift-detail?winner_id=${winner_id}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token, login_token: token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -345,7 +345,7 @@ class MyApi extends CallApi {
 	async getAlbums(page = 0, limit = 10) {
 		try {
 			const url = `${this.my_url}/album?page=${page}&limit=${limit}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -365,7 +365,7 @@ class MyApi extends CallApi {
 	async getAlbumDetail(id: string) {
 		try {
 			const url = `${this.my_url}/album/detail?id=${id}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -385,7 +385,7 @@ class MyApi extends CallApi {
 	async getPhotos(tags = "", page = 0, limit = 10) {
 		try {
 			const url = `${this.my_url}/photo?tags=${tags}&page=${page}&limit=${limit}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -405,7 +405,7 @@ class MyApi extends CallApi {
 	async getPhotoDetail(id: string) {
 		try {
 			const url = `${this.my_url}/photo/detail?id=${id}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -425,7 +425,7 @@ class MyApi extends CallApi {
 	async getInvite(name: string) {
 		try {
 			const url = `${this.my_url}/invitee/detail?slug_name=${name}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
 			if (result?.success && result?.data) {
 				return result?.data;
@@ -444,7 +444,7 @@ class MyApi extends CallApi {
 	async sendMessage(data: AxiosData) {
 		try {
 			const url = `${this.my_url}/message/create`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.POST, data };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.POST, data };
 
 			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
 			if (result?.success && result?.data) {
@@ -464,7 +464,7 @@ class MyApi extends CallApi {
 	async getMessages(page = 0, limit = 10) {
 		try {
 			const url = `${this.my_url}/message?page=${page}&limit=${limit}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -484,7 +484,7 @@ class MyApi extends CallApi {
 	async getMessageDetail(id: string) {
 		try {
 			const url = `${this.my_url}/message/detail?id=${id}`;
-			const params: ParamsAxios = { url, headers: { verify_token: this.verify_token }, method: HTTP_METHOD.GET };
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
 
 			const result = await this.http_request<MyApiResponse<CommonData>>(params);
 			if (result?.status !== HTTP_STATUS_CODE.OK && !result?.result) {
@@ -493,6 +493,44 @@ class MyApi extends CallApi {
 			return result?.result;
 		} catch (error) {
 			console.log("Error getMessageDetail :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async getWeddingInfo() {
+		try {
+			const url = `${this.my_url}/info/wedding`;
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
+			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
+			if (result?.success && result?.data) {
+				return result?.data;
+			}
+			return result?.errors;
+		} catch (error) {
+			console.log("Error getWeddingInfo :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+	async getTimeline() {
+		try {
+			const url = `${this.my_url}/info/timeline`;
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
+			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
+			if (result?.success && result?.data) {
+				return result?.data;
+			}
+			return result?.errors;
+		} catch (error) {
+			console.log("Error getTimeline :>> ", error);
 			return {
 				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
 				data: null,

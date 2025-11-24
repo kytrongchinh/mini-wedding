@@ -69,12 +69,25 @@ const CommonModal: FC<CommonProps> = (props) => {
 			);
 		}
 
-		return (
-			<div className="content">
-				<div dangerouslySetInnerHTML={{ __html: content }} />
-				{button}
-			</div>
-		);
+		if (name == MODAL_NAME.VIEW_IMAGE) {
+			return (
+				<div className="content">
+					<img src={content} alt={`Gallery ${content}`} className="rounded-lg shadow-lg w-full h-full object-cover" />
+					<div className="mt-5">
+						<div className="mb-3">
+							<ButtonDefault text={BUTTON_NAME.CLOSE} buttonType="button-style" onClick={() => handelClickButton(BUTTON_NAME.CLOSE)} />
+						</div>
+					</div>
+				</div>
+			);
+		} else {
+			return (
+				<div className="content">
+					<div dangerouslySetInnerHTML={{ __html: content }} />
+					{button}
+				</div>
+			);
+		}
 	};
 
 	const handelClickButton = async (buttonName: string) => {

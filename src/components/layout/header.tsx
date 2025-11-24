@@ -25,7 +25,7 @@ const HeaderSection: FC<HeaderSectionProps> = (props) => {
 			const listDisabledRouter: string[] = LIST_ROUTER_DISABLE;
 			const listRouterTo: string[] = LIST_ROUTER_TO_ROUTER;
 			if (isRouteMatch(location.pathname, listRouterGoback)) {
-				if (location.pathname == MY_ROUTERS.FORM_FILL_INFO) {
+				if (location.pathname == MY_ROUTERS.CREATE_MESSAGE) {
 					navigate(MY_ROUTERS.HOME, { replace: true });
 				} else {
 					navigate(-1);

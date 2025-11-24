@@ -4,13 +4,14 @@ import React, { FC, useEffect, useReducer, useState } from "react";
 import { stagger, useAnimate } from "framer-motion";
 import _ from "lodash";
 import myapi from "@/services/myapi";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { loadingAtom } from "@/stores";
 import { convertPage } from "@/utils/base";
 import Pagination from "@/components/Pagination/Pagination";
 import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 import { MY_ROUTERS } from "@/types/enums";
+import { campaignAtom } from "@/stores/campaign";
 
 type State = {
 	loading: boolean;
@@ -39,11 +40,11 @@ function reducer(state: State, action: Action) {
 	}
 }
 const MesagePage: FC<CommonProps> = () => {
-	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const navigate = useNavigate();
 	const [scope, animate] = useAnimate();
 	const [, setLoading] = useRecoilState(loadingAtom);
-
+	const campaignInfo = useRecoilValue(campaignAtom);
+	useSeo({ title: `${campaignInfo?.wedding?.groom || "Ky Chin"} 囍 ${campaignInfo?.wedding?.bride || "Mi Mie"}`, description: "Welcome to the Home Page of My App!" });
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
@@ -126,7 +127,9 @@ const MesagePage: FC<CommonProps> = () => {
 				)}
 
 				<div className="timeline-name m-2 opacity-35">
-					<div className="text-[20px] text-center">Trọng Chính & Trường Mi</div>
+					<div className="text-[20px] text-center">
+						{campaignInfo?.wedding?.groom || "Ky Chin"} & {campaignInfo?.wedding?.bride || "Mi Mie"}
+					</div>
 				</div>
 			</div>
 		</div>

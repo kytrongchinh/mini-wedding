@@ -1,6 +1,6 @@
 import useSeo from "@/hooks/useSeo";
-import { CommonProps } from "@/types/interface";
-import React, { FC, useEffect } from "react";
+import { CommonProps, CommonState } from "@/types/interface";
+import React, { FC, useEffect, useState } from "react";
 import { stagger, useAnimate } from "framer-motion";
 import "./style.scss";
 import _ from "lodash";
@@ -13,17 +13,31 @@ import groom from "@/assets/images/mi-mie/groom.png";
 import chuhy from "@/assets/images/mi-mie/chu-hy.png";
 import { useRecoilValue } from "recoil";
 import { inviteeAtom } from "@/stores/invitee";
+import myapi from "@/services/myapi";
+import { campaignAtom } from "@/stores/campaign";
 
 const TimelinePage: FC<CommonProps> = () => {
-	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const [scope, animate] = useAnimate();
 
 	const invitee = useRecoilValue(inviteeAtom);
-
+	const [timline, setTimeline] = useState<CommonState>({});
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
+		loadTimelineInfo();
 	}, []);
+
+	const campaignInfo = useRecoilValue(campaignAtom);
+	useSeo({ title: `${campaignInfo?.wedding?.groom || "Ky Chin"} 囍 ${campaignInfo?.wedding?.bride || "Mi Mie"}`, description: "Welcome to the Home Page of My App!" });
+
+	const loadTimelineInfo = async () => {
+		try {
+			const myData = await myapi.getTimeline();
+			if (myData?.status == 200 && myData?.result?.data) {
+				setTimeline(myData?.result?.data);
+			}
+		} catch (error) {}
+	};
 
 	return (
 		<div className="page-content timeline" ref={scope}>
@@ -44,17 +58,17 @@ const TimelinePage: FC<CommonProps> = () => {
 							</div>
 						</div>
 						<div className="section mt-10">
-							<p className="text-base !text-[14px]">11:00 21.12.2025 </p>
-							<h3 className="text-[#8B0000] font-bold text-lg">NHÀ GÁI</h3>
-							<p className="font-semibold">TIỆC RƯỢU</p>
-							<p className="text-sm mt-1 italic">Nhà hàng Tuấn Thảo </p>
+							<p className="text-base !text-[14px]">{timline?.bride?.party?.time || "11:00 21.12.2025"} </p>
+							<h3 className="text-[#8B0000] font-bold text-lg">{timline?.bride?.party?.name || "TIỆC RƯỢU"}</h3>
+							{/* <p className="font-semibold">TIỆC RƯỢU</p> */}
+							<p className="text-sm mt-1 italic">{timline?.bride?.party?.at || "Nhà hàng Tuấn Thảo"} </p>
 						</div>
 
 						<div className="section mt-40">
-							<p className="text-base !text-[14px]">10:00 25.12.2025</p>
-							<h3 className="text-[#8B0000] font-bold text-lg">LỄ GIA TIÊN</h3>
-							<p className="font-semibold">Tư gia nhà trai</p>
-							<p className="text-sm mt-1 italic">Đội 5, Trà Thung, Phù Mỹ Bắc, Gia Lai </p>
+							<p className="text-base !text-[14px]">{timline?.groom?.ancestral_ceremony?.time || "10:00 25.12.2025"}</p>
+							<h3 className="text-[#8B0000] font-bold text-lg">{timline?.groom?.ancestral_ceremony?.name || "LỄ GIA TIÊN"}</h3>
+							<p className="font-semibold">{timline?.groom?.ancestral_ceremony?.at || "Tư gia nhà trai"}</p>
+							<p className="text-sm mt-1 italic">{timline?.groom?.ancestral_ceremony?.address || "Đội 5, Trà Thung, Phù Mỹ Bắc, Gia Lai "}</p>
 						</div>
 					</div>
 
@@ -66,10 +80,10 @@ const TimelinePage: FC<CommonProps> = () => {
 
 					<div className="w-full">
 						<div className="section">
-							<p className="text-base !text-[14px]">9:00 21.12.2025 </p>
-							<h3 className="text-[#8B0000] font-bold text-lg">LỄ GIA TIÊN</h3>
-							<p className="font-semibold">Tư gia nhà gái</p>
-							<p className="text-sm mt-1 italic">07 Hoàng Quốc Việt, Đức Lập, Lâm Đồng </p>
+							<p className="text-base !text-[14px]">{timline?.bride?.ancestral_ceremony?.time || "9:00 21.12.2025"} </p>
+							<h3 className="text-[#8B0000] font-bold text-lg">{timline?.bride?.ancestral_ceremony?.name || "LỄ GIA TIÊN"}</h3>
+							<p className="font-semibold">{timline?.bride?.ancestral_ceremony?.at || "Tư gia nhà gái"}</p>
+							<p className="text-sm mt-1 italic">{timline?.bride?.ancestral_ceremony?.address || "07 Hoàng Quốc Việt, Đức Lập, Lâm Đồng "}</p>
 						</div>
 
 						<div className="m-auto mt-10">
@@ -79,9 +93,9 @@ const TimelinePage: FC<CommonProps> = () => {
 						</div>
 
 						<div className="section mt-40">
-							<p className="text-base !text-[14px]">11:30 25.12.2025 </p>
-							<h3 className="text-[#8B0000] font-bold text-lg">TIỆC RƯỢU</h3>
-							<p className="text-sm mt-1 italic">Nhà hàng Thanh Hường </p>
+							<p className="text-base !text-[14px]">{timline?.groom?.party?.time || "11:30 25.12.2025 "}</p>
+							<h3 className="text-[#8B0000] font-bold text-lg">{timline?.groom?.party?.time || "TIỆC RƯỢU"}</h3>
+							<p className="text-sm mt-1 italic">{timline?.groom?.party?.time || "Nhà hàng Thanh Hường "}</p>
 						</div>
 					</div>
 				</div>
@@ -94,11 +108,11 @@ const TimelinePage: FC<CommonProps> = () => {
 					</div>
 
 					<div className="section mt-5">
-						<h3 className="text-[#8B0000] font-bold text-lg underline">TIỆC BÁO HỶ</h3>
-						<p className="text-base !text-[14px]">19h 08.01.2026 </p>
+						<h3 className="text-[#8B0000] font-bold text-lg underline">{timline?.wedding_party?.name || "TIỆC BÁO HỶ"}</h3>
+						<p className="text-base !text-[14px]">{timline?.wedding_party?.time || "19h 08.01.2026 "}</p>
 
-						<p className="font-semibold">Én Restaurant & Event Space</p>
-						<p className="text-sm mt-1 italic">Robot Tower, 308C Điện Biên Phủ, Phường 4, Quận 3, Thành phố Hồ Chí Minh</p>
+						<p className="font-semibold">{timline?.wedding_party?.at || "Én Restaurant & Event Space"}</p>
+						<p className="text-sm mt-1 italic">{timline?.wedding_party?.address || "Robot Tower, 308C Điện Biên Phủ, Phường 4, Quận 3, Thành phố Hồ Chí Minh"}</p>
 					</div>
 
 					<div className="text-sm relative mt-5">
@@ -116,7 +130,9 @@ const TimelinePage: FC<CommonProps> = () => {
 					<div className="text-sm">là niềm vinh hạnh của gia đình.</div>
 				</div>
 				<div className="timeline-name m-2 opacity-35">
-					<div className="text-[20px] text-center">Trọng Chính & Trường Mi</div>
+					<div className="text-[20px] text-center">
+						{campaignInfo?.wedding?.groom || "Ky Chin"} & {campaignInfo?.wedding?.bride || "Mi Mie"}
+					</div>
 				</div>
 			</div>
 		</div>

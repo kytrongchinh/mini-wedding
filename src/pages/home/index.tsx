@@ -12,14 +12,14 @@ import cunghy from "@/assets/images/mi-mie/cung-hy.png";
 import corner from "@/assets/images/mi-mie/frame-1.png";
 import flower from "@/assets/images/mi-mie/flower.png";
 import { MY_ROUTERS } from "@/types/enums";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { paramsAtom } from "@/stores/params";
 import myapi from "@/services/myapi";
 import { inviteeAtom } from "@/stores/invitee";
 import storage from "@/utils/storage";
+import { campaignAtom } from "@/stores/campaign";
 
 const HomePage: FC<CommonProps> = () => {
-	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const navigate = useNavigate();
 	const [scope, animate] = useAnimate();
 	const params = useParams();
@@ -27,6 +27,8 @@ const HomePage: FC<CommonProps> = () => {
 	const [searchParams] = useSearchParams();
 	const name = searchParams.get("name") || params?.name || mparams?.name;
 	const [invitee, setInvitee] = useRecoilState(inviteeAtom);
+	const campaignInfo = useRecoilValue(campaignAtom);
+	useSeo({ title: `${campaignInfo?.wedding?.groom || "Ky Chin"} 囍 ${campaignInfo?.wedding?.bride || "Mi Mie"}`, description: "Welcome to the Home Page of My App!" });
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
@@ -72,11 +74,11 @@ const HomePage: FC<CommonProps> = () => {
 
 						<p className="text-sm tracking-wider !mt-4">SAVE THE DATE</p>
 						<div className="wedding-name m-6">
-							<div className="text-[40px] font-bold relative z-10 -left-8">Trọng Chính</div>
+							<div className="text-[40px] font-bold relative z-10 -left-8">{campaignInfo?.wedding?.groom || "Ky Chin"}</div>
 							<div className="absolute left-5 -bottom-4 -translate-x-[60%] -translate-y-[30%] text-[60px] leading-none font-bold italic select-none z-0 opacity-30">
 								&
 							</div>
-							<div className="text-[40px] font-bold relative z-10 mt-4 -right-8">Trường Mi</div>
+							<div className="text-[40px] font-bold relative z-10 mt-4 -right-8">{campaignInfo?.wedding?.bride || "Mi Mie"}</div>
 						</div>
 						{/* <div className="text-3xl my-10">💐</div> */}
 						<div className="w-1/3 m-auto">

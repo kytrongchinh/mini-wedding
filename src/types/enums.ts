@@ -140,6 +140,7 @@ export enum MODAL_NAME {
 	CAN_NOT_JOIN = "can-not-join",
 	EXCHANGE_TICKET = "exchange-ticket",
 	UPLOAD_IMAGE = "upload-image",
+	VIEW_IMAGE = "view-image",
 }
 
 export enum BUTTON_NAME {

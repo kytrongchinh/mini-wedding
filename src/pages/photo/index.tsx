@@ -1,15 +1,18 @@
 import useSeo from "@/hooks/useSeo";
-import { CommonForm, CommonProps, CommonState } from "@/types/interface";
+import { CommonFields, CommonForm, CommonProps, CommonState } from "@/types/interface";
 import React, { FC, useEffect, useReducer, useState } from "react";
 import { stagger, useAnimate } from "framer-motion";
 import "./style.scss";
 import _ from "lodash";
 import myapi from "@/services/myapi";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { loadingAtom } from "@/stores";
 import { convertPage } from "@/utils/base";
 import Pagination from "@/components/Pagination/Pagination";
 import { FieldErrors, useForm } from "react-hook-form";
+import { campaignAtom } from "@/stores/campaign";
+import { modalAtom } from "@/stores/modal";
+import { BUTTON_NAME, MODAL_NAME } from "@/types/enums";
 
 type State = {
 	loading: boolean;
@@ -38,10 +41,12 @@ function reducer(state: State, action: Action) {
 	}
 }
 const PhotoPage: FC<CommonProps> = () => {
-	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const [scope, animate] = useAnimate();
 	const [, setLoading] = useRecoilState(loadingAtom);
 	const [myKeyword, setMykeyword] = useState("");
+	const campaignInfo = useRecoilValue(campaignAtom);
+	useSeo({ title: `${campaignInfo?.wedding?.groom || "Ky Chin"} 囍 ${campaignInfo?.wedding?.bride || "Mi Mie"}`, description: "Welcome to the Home Page of My App!" });
+	const [com_modal, setComModal] = useRecoilState(modalAtom);
 	const {
 		register,
 		handleSubmit,
@@ -110,6 +115,16 @@ const PhotoPage: FC<CommonProps> = () => {
 	const onError = (e: FieldErrors) => {
 		console.log(`==>`, e);
 	};
+
+	const handleViewImg = (item: CommonFields) => {
+		setComModal((prevState) => ({
+			...prevState,
+			name: MODAL_NAME.VIEW_IMAGE,
+			open: true,
+			content: `https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s1000`,
+			buttonName: BUTTON_NAME.CLOSE,
+		}));
+	};
 	return (
 		<div className="page-content timeline" ref={scope}>
 			<div className="container animUp ">
@@ -146,6 +161,7 @@ const PhotoPage: FC<CommonProps> = () => {
 							list?.items.map((item: CommonState, index: number) => (
 								<div key={index} className="relative cursor-pointer">
 									<img
+										onClick={() => handleViewImg(item)}
 										src={`https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s600`}
 										alt={`Gallery ${index}`}
 										className="rounded-lg shadow-lg hover:scale-105 transition-transform w-full h-full object-cover"
@@ -166,7 +182,9 @@ const PhotoPage: FC<CommonProps> = () => {
 				)}
 
 				<div className="timeline-name m-2 opacity-35">
-					<div className="text-[20px] text-center">Trọng Chính & Trường Mi</div>
+					<div className="text-[20px] text-center">
+						{campaignInfo?.wedding?.groom || "Ky Chin"} & {campaignInfo?.wedding?.bride || "Mi Mie"}
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,13 +1,12 @@
 import useSeo from "@/hooks/useSeo";
-import { CommonForm, CommonProps, CommonState } from "@/types/interface";
-import React, { FC, useEffect, useReducer, useState } from "react";
+import { CommonForm, CommonProps } from "@/types/interface";
+import React, { FC, useEffect, useState } from "react";
 import { stagger, useAnimate } from "framer-motion";
 import _ from "lodash";
 import myapi from "@/services/myapi";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { loadingAtom } from "@/stores";
-import { convertPage } from "@/utils/base";
-import Pagination from "@/components/Pagination/Pagination";
+
 import { FieldErrors, useForm } from "react-hook-form";
 import "./styles.scss";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +16,7 @@ import { inviteeAtom } from "@/stores/invitee";
 import Select from "react-select";
 import { modalAtom } from "@/stores/modal";
 import { MESSAGE_TEMPLATES } from "@/types/messages";
+import { campaignAtom } from "@/stores/campaign";
 const options = [
 	{ value: "Bạn", label: "Bạn" },
 	{ value: "Em", label: "Em" },
@@ -26,13 +26,14 @@ const options = [
 ];
 
 const CreateMesagePage: FC<CommonProps> = () => {
-	useSeo({ title: "Trọng Chính 囍 Trường Mi", description: "Welcome to the Home Page of My App!" });
 	const navigate = useNavigate();
 	const [scope, animate] = useAnimate();
 	const [, setLoading] = useRecoilState(loadingAtom);
-	const [myKeyword, setMykeyword] = useState("");
 	const invitee = useRecoilValue(inviteeAtom);
 	const [com_modal, setComModal] = useRecoilState(modalAtom);
+	const campaignInfo = useRecoilValue(campaignAtom);
+	useSeo({ title: `${campaignInfo?.wedding?.groom || "Ky Chin"} 囍 ${campaignInfo?.wedding?.bride || "Mi Mie"}`, description: "Welcome to the Home Page of My App!" });
+
 	const {
 		register,
 		handleSubmit,
@@ -164,7 +165,9 @@ const CreateMesagePage: FC<CommonProps> = () => {
 				</div>
 
 				<div className="timeline-name m-2 opacity-35">
-					<div className="text-[20px] text-center">Trọng Chính & Trường Mi</div>
+					<div className="text-[20px] text-center">
+						{campaignInfo?.wedding?.groom || "Ky Chin"} & {campaignInfo?.wedding?.bride || "Mi Mie"}
+					</div>
 				</div>
 			</div>
 		</div>

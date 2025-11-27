@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { MY_ROUTERS, BUTTON_NAME } from "@/types/enums";
 import { MESSAGE_TEMPLATES } from "@/types/messages";
 import { extractCodeFromText } from "@/utils/base";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { modalAtom } from "@/stores/modal";
 import { motion } from "framer-motion";
 
@@ -19,13 +19,16 @@ import ButtonDefault from "../ButtonDefault/ButtonDefault";
 import device from "@/services/miniapp/device";
 import zalo from "@/services/miniapp/zalo";
 import useAuth from "@/hooks/useAuth";
+import myapi from "@/services/myapi";
+import { inviteeAtom } from "@/stores/invitee";
+import storage from "@/utils/storage";
 
 const CommonModal: FC<CommonProps> = (props) => {
 	const navigate = useNavigate();
 	const { modalIsOpen, onClose, content, name, buttonName = "Về OA", handleModalActionClick, noted = "" } = props;
 	const [_, setComModal] = useRecoilState(modalAtom);
 
-	const { handleLogin } = useAuth();
+	const [invitee, setInvitee] = useRecoilState(inviteeAtom);
 
 	const renderContent = () => {
 		let button: string | null | React.ReactElement = <ButtonDefault text={buttonName} buttonType="button-style flex justify-center mt-5" onClick={handleModalActionClick} />;
@@ -64,6 +67,16 @@ const CommonModal: FC<CommonProps> = (props) => {
 				<div className="mt-5">
 					<div className="mb-3">
 						<ButtonDefault text={BUTTON_NAME.TIEP_TUC} buttonType="button-style" onClick={() => handelClickButton(MODAL_NAME.NOTI_AUTH)} />
+					</div>
+				</div>
+			);
+		}
+
+		if (name == MODAL_NAME.ACCEPT) {
+			button = (
+				<div className="mt-5">
+					<div className="mb-3">
+						<ButtonDefault text={BUTTON_NAME.DONG_Y} buttonType="button-style" onClick={() => handelClickButton(BUTTON_NAME.DONG_Y)} />
 					</div>
 				</div>
 			);
@@ -126,6 +139,9 @@ const CommonModal: FC<CommonProps> = (props) => {
 			navigate(MY_ROUTERS.TNC);
 
 			return;
+		} else if (buttonName == BUTTON_NAME.DONG_Y) {
+			acceptToParty();
+			return;
 		} else if (buttonName == BUTTON_NAME.VE_TRANG_CHU) {
 			navigate(MY_ROUTERS.HOME);
 			return;
@@ -147,6 +163,15 @@ const CommonModal: FC<CommonProps> = (props) => {
 			return;
 		} else {
 			onClose();
+		}
+	};
+
+	const acceptToParty = async () => {
+		console.log("okokook");
+		const accept = await myapi.accpetToParty({ slug_name: invitee?.slug_name });
+		if (accept?.status == 200 && accept?.result?.data) {
+			setInvitee(accept?.result?.data?.item?.msg);
+			await storage.setStorage("inviteeInfo", accept?.result?.data?.item?.msg);
 		}
 	};
 

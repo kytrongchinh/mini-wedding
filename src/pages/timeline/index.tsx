@@ -11,20 +11,36 @@ import bride from "@/assets/images/mi-mie/bride.png";
 import perid from "@/assets/images/mi-mie/perid.png";
 import groom from "@/assets/images/mi-mie/groom.png";
 import chuhy from "@/assets/images/mi-mie/chu-hy.png";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { inviteeAtom } from "@/stores/invitee";
 import myapi from "@/services/myapi";
 import { campaignAtom } from "@/stores/campaign";
+import { modalAtom } from "@/stores/modal";
+import { BUTTON_NAME, MODAL_NAME } from "@/types/enums";
+import { MESSAGE_TEMPLATES } from "@/types/messages";
 
 const TimelinePage: FC<CommonProps> = () => {
 	const [scope, animate] = useAnimate();
 
 	const invitee = useRecoilValue(inviteeAtom);
 	const [timline, setTimeline] = useState<CommonState>({});
+	const [com_modal, setComModal] = useRecoilState(modalAtom);
+
 	useEffect(() => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
 		loadTimelineInfo();
+		if (!invitee?.accept) {
+			setTimeout(() => {
+				setComModal((prevState) => ({
+					...prevState,
+					name: MODAL_NAME.ACCEPT,
+					open: true,
+					content: MESSAGE_TEMPLATES.ACCEPT,
+					buttonName: BUTTON_NAME.DONG_Y,
+				}));
+			}, 2000);
+		}
 	}, []);
 
 	const campaignInfo = useRecoilValue(campaignAtom);

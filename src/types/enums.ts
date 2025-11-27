@@ -141,6 +141,7 @@ export enum MODAL_NAME {
 	EXCHANGE_TICKET = "exchange-ticket",
 	UPLOAD_IMAGE = "upload-image",
 	VIEW_IMAGE = "view-image",
+	ACCEPT = "ACCEPT",
 }
 
 export enum BUTTON_NAME {

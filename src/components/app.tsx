@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { App, SnackbarProvider, useLocation } from "zmp-ui";
 import { RecoilRoot } from "recoil";
@@ -7,16 +7,36 @@ import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { ScrollToTop } from "./ScrollTop/ScrollTop";
 import { RouterCustom } from "./Router/router-custom";
+import Music from "./layout/music";
+
 const MyApp = () => {
+	const audioRef = useRef<HTMLAudioElement | null>(null);
+	const isPlaying = (audio: HTMLAudioElement) => !audio.paused && !audio.ended && audio.currentTime > 0;
+
+	const playAudio = () => {
+		const audio = audioRef.current;
+		if (!audio) return;
+
+		if (!isPlaying(audio)) {
+			console.log(audio, "audio");
+			audio.play().catch((err) => console.log(err));
+		} else {
+			console.log("Already playing");
+		}
+	};
+
 	if (import.meta.env.MODE == "development") {
 		return (
 			<RecoilRoot>
 				<HelmetProvider>
 					<BrowserRouter>
+						<Music ref={audioRef} />
 						<App>
 							<SnackbarProvider>
 								<ScrollToTop />
-								<RouterCustom />
+								<div className="container" onClick={playAudio}>
+									<RouterCustom />
+								</div>
 							</SnackbarProvider>
 						</App>
 					</BrowserRouter>

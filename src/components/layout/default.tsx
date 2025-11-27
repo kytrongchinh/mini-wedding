@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import HeaderSection from "./header";
 import { Helmet } from "react-helmet-async";
@@ -32,6 +32,9 @@ import { paramsAtom } from "@/stores/params";
 import { initGA } from "@/utils/zmp_ga";
 import CommonModal from "../modals/common";
 import adtimabox from "@/services/adtimabox";
+import { campaignAtom } from "@/stores/campaign";
+import Music from "./music";
+import FallingHearts from "../FallingHearts";
 interface MParams {
 	[key: string]: any;
 }
@@ -201,6 +204,8 @@ const DefaultLayout: FC = () => {
 				buttonName={com_modal?.buttonName}
 			/>
 			<Loading />
+			<FallingHearts />
+
 			<div className={clsx("container", location.pathname === "/" && "")}>
 				<Outlet />
 			</div>

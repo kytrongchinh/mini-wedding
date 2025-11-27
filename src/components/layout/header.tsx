@@ -10,7 +10,6 @@ import { MESSAGE_TEMPLATES } from "@/types/messages";
 import { HeaderSectionProps } from "@/types/interface";
 import { isRouteMatch } from "@/utils/base";
 import { MODAL_NAME, MY_ROUTERS, BUTTON_NAME } from "@/types/enums";
-import logo from "@/assets/images/logo.png";
 
 const HeaderSection: FC<HeaderSectionProps> = (props) => {
 	const { title = "" } = props;

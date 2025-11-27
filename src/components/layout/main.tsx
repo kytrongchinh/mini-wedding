@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import HeaderSection from "./header";
 import { Helmet } from "react-helmet-async";
@@ -32,6 +32,7 @@ import { paramsAtom } from "@/stores/params";
 import { initGA } from "@/utils/zmp_ga";
 import CommonModal from "../modals/common";
 import adtimabox from "@/services/adtimabox";
+import Music from "./music";
 interface MParams {
 	[key: string]: any;
 }

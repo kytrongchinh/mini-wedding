@@ -1,6 +1,6 @@
 import useSeo from "@/hooks/useSeo";
 import { CommonProps } from "@/types/interface";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { stagger, useAnimate } from "framer-motion";
 import ButtonDefault from "@/components/ButtonDefault/ButtonDefault";
 import "./style.scss";
@@ -65,7 +65,12 @@ const HomePage: FC<CommonProps> = () => {
 					<img src={corner} className="absolute bottom-0 left-0 w-12 h-12 scale-y-[-1]" alt="corner bottom left" />
 					<img src={corner} className="absolute bottom-0 right-0 w-12 h-12 scale-[-1]" alt="corner bottom right" />
 
-					<div className="relative z-10 text-center px-6 py-10" onClick={() => navigate(MY_ROUTERS.WEDDING)}>
+					<div
+						className="relative z-10 text-center px-6 py-10"
+						onClick={() => {
+							navigate(MY_ROUTERS.WEDDING);
+						}}
+					>
 						<div className="w-1/3 m-auto">
 							<div className="img animUp">
 								<img src={cunghy} alt="" />

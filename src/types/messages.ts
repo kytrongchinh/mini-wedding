@@ -36,6 +36,7 @@ export enum MESSAGE_TEMPLATES {
 	LIMIT_SIZE_FILE_UPLOAD = `<p>Hình ảnh bạn chọn phải có dung dượng nhỏ hơn 5MB!</p>`,
 	CAN_NOT_JOIN_CAMPAIGN = `<p>Tài khoản của bạn không thể tham gia thực hiện các chức năng của chương trình! Vui lòng liên hệ với ban quản trị để biết thêm chi tiết.</p>`,
 	THANKYOU = `<p>Cảm ơn bạn đã gửi những lời yêu thương đến dâu rể.</p>`,
+	ACCEPT = `<p>Bạn sẽ tham gia tiệc báo hỷ để chúc mừng đôi trẻ chứ? </p><p>Sự có mặt của bạn thực sự là niềm vinh hạnh cho đôi trẻ!</p>`,
 }
 
 export const loadMyMessage = (template: MESSAGE_TEMPLATES, params: CommonFields): string => {

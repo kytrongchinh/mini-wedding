@@ -30,7 +30,7 @@ const TimelinePage: FC<CommonProps> = () => {
 		const animUp = document.querySelectorAll(".animUp");
 		animate(animUp, { y: [20, 0], opacity: [0, 1] }, { type: "spring", delay: stagger(0.15) });
 		loadTimelineInfo();
-		if (!invitee?.accept) {
+		if (invitee && invitee?.accept == false) {
 			setTimeout(() => {
 				setComModal((prevState) => ({
 					...prevState,

@@ -33,6 +33,7 @@ import { initGA } from "@/utils/zmp_ga";
 import CommonModal from "../modals/common";
 import adtimabox from "@/services/adtimabox";
 import Music from "./music";
+import FallingHearts from "../FallingHearts";
 interface MParams {
 	[key: string]: any;
 }
@@ -201,6 +202,7 @@ const MainLayout: FC = () => {
 				noted={com_modal?.noted}
 				buttonName={com_modal?.buttonName}
 			/>
+			<FallingHearts />
 			<Loading />
 			<div className={clsx("container", location.pathname === "/" && "")}>
 				<Outlet />

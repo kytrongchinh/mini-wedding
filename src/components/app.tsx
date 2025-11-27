@@ -48,10 +48,13 @@ const MyApp = () => {
 			<RecoilRoot>
 				<HelmetProvider>
 					<BrowserRouter basename="/zapps/868938787760554822">
+						<Music ref={audioRef} />
 						<App>
 							<SnackbarProvider>
 								<ScrollToTop />
-								<RouterCustom />
+								<div className="container" onClick={playAudio}>
+									<RouterCustom />
+								</div>
 							</SnackbarProvider>
 						</App>
 					</BrowserRouter>

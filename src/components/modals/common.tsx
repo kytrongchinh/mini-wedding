@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Modal from "react-modal";
 // -- Components --
 import _ from "lodash";
@@ -22,6 +22,12 @@ import useAuth from "@/hooks/useAuth";
 import myapi from "@/services/myapi";
 import { inviteeAtom } from "@/stores/invitee";
 import storage from "@/utils/storage";
+import Select from "react-select";
+const options = [
+	{ value: "Tiệc nhà trai", label: "Tiệc nhà trai" },
+	{ value: "Tiệc nhà gái", label: "Tiệc nhà gái" },
+	{ value: "Tiệc báo hỷ", label: "Tiệc báo hỷ" },
+];
 
 const CommonModal: FC<CommonProps> = (props) => {
 	const navigate = useNavigate();
@@ -29,7 +35,12 @@ const CommonModal: FC<CommonProps> = (props) => {
 	const [_, setComModal] = useRecoilState(modalAtom);
 
 	const [invitee, setInvitee] = useRecoilState(inviteeAtom);
+	const [to, setTo] = useState(options[0]);
 
+	const handleChange = (e: any) => {
+		console.log(e);
+		setTo(e);
+	};
 	const renderContent = () => {
 		let button: string | null | React.ReactElement = <ButtonDefault text={buttonName} buttonType="button-style flex justify-center mt-5" onClick={handleModalActionClick} />;
 
@@ -89,6 +100,20 @@ const CommonModal: FC<CommonProps> = (props) => {
 					<div className="mt-2">
 						<div className="mb-0">
 							<ButtonDefault text={BUTTON_NAME.CLOSE} buttonType="button-style" onClick={() => handelClickButton(BUTTON_NAME.CLOSE)} />
+						</div>
+					</div>
+				</div>
+			);
+		} else if (name == MODAL_NAME.ACCEPT) {
+			return (
+				<div className="content">
+					<div dangerouslySetInnerHTML={{ __html: content }} />
+					<div className="mt-2 relative z-50">
+						<Select options={options} placeholder="Chọn nơi dự tiệc" value={to} onChange={setTo} className="react-select-container" classNamePrefix="react-select" />
+					</div>
+					<div className="mt-5">
+						<div className="mb-3">
+							<ButtonDefault text={BUTTON_NAME.DONG_Y} buttonType="button-style" onClick={() => handelClickButton(BUTTON_NAME.DONG_Y)} />
 						</div>
 					</div>
 				</div>
@@ -167,7 +192,7 @@ const CommonModal: FC<CommonProps> = (props) => {
 	};
 
 	const acceptToParty = async () => {
-		const accept = await myapi.accpetToParty({ slug_name: invitee?.slug_name });
+		const accept = await myapi.accpetToParty({ slug_name: invitee?.slug_name, to: to?.value });
 		if (accept?.status == 200 && accept?.result?.data) {
 			setInvitee(accept?.result?.data?.item?.msg);
 			await storage.setStorage("inviteeInfo", accept?.result?.data?.item?.msg);

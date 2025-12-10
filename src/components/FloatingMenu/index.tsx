@@ -13,7 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { audioAtom } from "@/stores/audio";
 export default function FloatingMenu() {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(true);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [playing, setPlaying] = useRecoilState(audioAtom);
@@ -37,7 +37,7 @@ export default function FloatingMenu() {
 	};
 
 	return (
-		<div className="fixed bottom-44 right-3 z-50">
+		<div className="fixed bottom-14 right-3 z-50">
 			{/* LIST */}
 			<div
 				className={`

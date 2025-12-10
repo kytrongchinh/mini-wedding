@@ -36,6 +36,7 @@
 		position: relative;
 		overflow: hidden;
 		font-weight: 600;
+		box-shadow: inset 5px 4px 5px 0 rgb(255 148 148);
 
 		@media (max-width: 400px) {
 			font-size: 0.875em;

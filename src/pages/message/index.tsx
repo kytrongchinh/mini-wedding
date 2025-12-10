@@ -12,6 +12,7 @@ import "./styles.scss";
 import { useNavigate } from "react-router-dom";
 import { MY_ROUTERS } from "@/types/enums";
 import { campaignAtom } from "@/stores/campaign";
+import ButtonDefault from "@/components/ButtonDefault/ButtonDefault";
 
 type State = {
 	loading: boolean;
@@ -125,6 +126,9 @@ const MesagePage: FC<CommonProps> = () => {
 						<Pagination page={list?.page - 1} totalPage={convertPage(list?.total, list?.limit)} onPageChange={(event: any) => handleChangePage(event)} />
 					</div>
 				)}
+				<div className="bl-button flex  mt-20 justify-center">
+					<ButtonDefault text="✍️ Gửi lời chúc" align="center" buttonType="secondary z-10" href={MY_ROUTERS.CREATE_MESSAGE} />
+				</div>
 
 				<div className="timeline-name m-2 opacity-35">
 					<div className="text-[20px] text-center">

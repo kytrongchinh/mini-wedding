@@ -9,6 +9,8 @@ import { loadingAtom } from "@/stores";
 import { campaignAtom } from "@/stores/campaign";
 import myapi from "@/services/myapi";
 import routing from "@/services/miniapp/routing";
+import { Icon } from "zmp-ui";
+import couple from "@/assets/images/couple.png";
 
 const ContactPage: FC<CommonProps> = () => {
 	const [scope, animate] = useAnimate();
@@ -53,6 +55,9 @@ const ContactPage: FC<CommonProps> = () => {
 							{contact?.groom?.name && (
 								<>
 									<p>Chú rể </p>
+									{/* <div className="img w-1/2 mx-auto">
+										<img src={groom} />
+									</div> */}
 									<p className="!text-[20px]">
 										<strong>{contact?.groom?.name || "Ky Chin"}</strong>
 									</p>
@@ -62,7 +67,10 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Số điện thoại </p>
 									<p>
-										<strong>{contact?.groom?.phone || "0123456789"}</strong>
+										<Icon icon="zi-call" />{" "}
+										<strong>
+											<a href={`tel:0972569049`}>{contact?.groom?.phone || "0123456789"}</a>
+										</strong>
 									</p>
 								</>
 							)}
@@ -78,8 +86,8 @@ const ContactPage: FC<CommonProps> = () => {
 							{contact?.groom?.bank && (
 								<>
 									<p>Bank </p>
-									<div className="img w-1/3 mx-auto pb-2">
-										<img src={contact?.groom?.bank} alt="Zalo QR" />
+									<div className="img w-2/3 mx-auto pb-2">
+										<img src={contact?.groom?.bank} alt="Bank" />
 									</div>
 								</>
 							)}
@@ -97,7 +105,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Địa chỉ </p>
 									<p>
-										<strong>{contact?.groom?.address}</strong>
+										<Icon icon="zi-location" /> <strong>{contact?.groom?.address}</strong>
 									</p>
 								</>
 							)}
@@ -105,6 +113,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Thời gian </p>
 									<p>
+										<Icon icon="zi-clock-1" />
 										<strong>{contact?.groom?.time}</strong>
 									</p>
 								</>
@@ -113,6 +122,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Map </p>
 									<p className="underline" onClick={() => viewMap(contact?.groom?.map)}>
+										<Icon icon="zi-unhide" />
 										<strong>Xem</strong>
 									</p>
 								</>
@@ -122,6 +132,9 @@ const ContactPage: FC<CommonProps> = () => {
 							{contact?.bride?.name && (
 								<>
 									<p>Cô dâu </p>
+									{/* <div className="img">
+										<img src={bride} />
+									</div> */}
 									<p className="!text-[20px]">
 										<strong>{contact?.bride?.name || "Ky Chin"}</strong>
 									</p>
@@ -131,7 +144,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Số điện thoại </p>
 									<p>
-										<strong>{contact?.bride?.phone || "0123456789"}</strong>
+										<Icon icon="zi-call" /> <strong>{contact?.bride?.phone || "0123456789"}</strong>
 									</p>
 								</>
 							)}
@@ -146,8 +159,8 @@ const ContactPage: FC<CommonProps> = () => {
 							{contact?.bride?.bank && (
 								<>
 									<p>Bank </p>
-									<div className="img w-1/3 mx-auto pb-2">
-										<img src={contact?.bride?.bank} alt="Zalo QR" />
+									<div className="img w-2/3 mx-auto pb-2">
+										<img src={contact?.bride?.bank} alt="Bank" />
 									</div>
 								</>
 							)}
@@ -165,7 +178,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Địa chỉ </p>
 									<p>
-										<strong>{contact?.bride?.address}</strong>
+										<Icon icon="zi-location" /> <strong>{contact?.bride?.address}</strong>
 									</p>
 								</>
 							)}
@@ -173,6 +186,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Thời gian </p>
 									<p>
+										<Icon icon="zi-clock-1" />
 										<strong>{contact?.bride?.time}</strong>
 									</p>
 								</>
@@ -181,6 +195,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Map </p>
 									<p className="underline" onClick={() => viewMap(contact?.bride?.map)}>
+										<Icon icon="zi-unhide" />
 										<strong>Xem</strong>
 									</p>
 								</>
@@ -203,7 +218,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Địa chỉ </p>
 									<p>
-										<strong>{contact?.wedding_party?.address}</strong>
+										<Icon icon="zi-location" /><strong>{contact?.wedding_party?.address}</strong>
 									</p>
 								</>
 							)}
@@ -211,7 +226,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Thời gian </p>
 									<p>
-										<strong>{contact?.wedding_party?.time}</strong>
+										<Icon icon="zi-clock-1" /><strong>{contact?.wedding_party?.time}</strong>
 									</p>
 								</>
 							)}
@@ -219,6 +234,7 @@ const ContactPage: FC<CommonProps> = () => {
 								<>
 									<p>Map </p>
 									<p className="underline" onClick={() => viewMap(contact?.wedding_party?.map)}>
+										<Icon icon="zi-unhide" />
 										<strong>Xem</strong>
 									</p>
 								</>
@@ -227,7 +243,10 @@ const ContactPage: FC<CommonProps> = () => {
 					</div>
 				</div>
 
-				<div className="timeline-name m-2 opacity-35">
+				<div className="img w-2/3 mx-auto">
+					<img src={couple} alt="" />
+				</div>
+				<div className="timeline-name pb-14 opacity-35">
 					<div className="text-[20px] text-center">
 						{campaignInfo?.wedding?.groom || "Ky Chin"} & {campaignInfo?.wedding?.bride || "Mi Mie"}
 					</div>

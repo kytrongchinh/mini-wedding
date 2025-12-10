@@ -77,7 +77,7 @@ const WeddingPage: FC<CommonProps> = () => {
 					</div>
 				</div>
 
-				<div className="wedding-name m-6">
+				<div className="wedding-name">
 					<div className="text-[30px] text-center">
 						{campaignInfo?.wedding?.groom || "Ky Chin"} & {campaignInfo?.wedding?.bride || "Mi Mie"}
 					</div>

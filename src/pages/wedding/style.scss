@@ -31,9 +31,16 @@
 			}
 		}
 		.wedding-name {
+			margin: 24px;
 			font-family: var(--f-best);
 			color: rgb(164, 28, 28);
 			position: relative;
+			.text-custom {
+				font-size: 26px;
+			}
+			@media (max-width: 390px) {
+				margin: 24px 50px !important;
+			}
 		}
 	}
 	.swipper-img {

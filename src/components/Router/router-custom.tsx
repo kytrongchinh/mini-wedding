@@ -21,6 +21,7 @@ import PhotoPage from "@/pages/photo";
 import MainLayout from "../layout/main";
 import MesagePage from "@/pages/message";
 import CreateMesagePage from "@/pages/message/create";
+import ContactPage from "@/pages/contact";
 
 export const RouterCustom: FC = () => {
 	const { user } = useAuth();
@@ -52,6 +53,7 @@ export const RouterCustom: FC = () => {
 			children: [
 				{ path: MY_ROUTERS_FULL.ALBUM.NAME, element: <AlbumPage /> },
 				{ path: MY_ROUTERS_FULL.PHOTO.NAME, element: <PhotoPage /> },
+				{ path: MY_ROUTERS_FULL.CONTACT.NAME, element: <ContactPage /> },
 			],
 		},
 

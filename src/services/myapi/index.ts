@@ -342,7 +342,7 @@ class MyApi extends CallApi {
 		}
 	}
 
-	async getAlbums(page = 0, limit = 10) {
+	async getAlbums(page = 0, limit = 4) {
 		try {
 			const url = `${this.my_url}/album?page=${page}&limit=${limit}`;
 			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
@@ -382,7 +382,7 @@ class MyApi extends CallApi {
 		}
 	}
 
-	async getPhotos(tags = "", page = 0, limit = 10) {
+	async getPhotos(tags = "", page = 0, limit = 4) {
 		try {
 			const url = `${this.my_url}/photo?tags=${tags}&page=${page}&limit=${limit}`;
 			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
@@ -531,6 +531,26 @@ class MyApi extends CallApi {
 			return result?.errors;
 		} catch (error) {
 			console.log("Error getTimeline :>> ", error);
+			return {
+				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+				data: null,
+				message: "Failed",
+			};
+		}
+	}
+
+
+	async getContact() {
+		try {
+			const url = `${this.my_url}/info/contact`;
+			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
+			const result = await this.http_request_my_api<MyApiResponse<CommonData>>(params);
+			if (result?.success && result?.data) {
+				return result?.data;
+			}
+			return result?.errors;
+		} catch (error) {
+			console.log("Error getContact :>> ", error);
 			return {
 				statusCode: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
 				data: null,

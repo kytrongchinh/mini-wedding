@@ -60,6 +60,13 @@ const AlbumPage: FC<CommonProps> = () => {
 		error: "",
 	});
 
+	useEffect(() => {
+		document.body.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	}, [pageNum]);
+
 	const loadAlbums = async () => {
 		try {
 			setLoading(true);
@@ -93,7 +100,7 @@ const AlbumPage: FC<CommonProps> = () => {
 			...prevState,
 			name: MODAL_NAME.VIEW_IMAGE,
 			open: true,
-			content: `https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s1000`,
+			content: `https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s1200`,
 			buttonName: BUTTON_NAME.CLOSE,
 		}));
 	};
@@ -107,7 +114,7 @@ const AlbumPage: FC<CommonProps> = () => {
 
 				<div className="relative flex justify-center items-start text-sm md:text-base text-center w-full gap-3"></div>
 				<div className="p-4">
-					<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+					<div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
 						{list?.items?.length > 0 &&
 							list?.items.map((item: CommonState, index: number) => (
 								<div key={index} className="relative cursor-pointer">

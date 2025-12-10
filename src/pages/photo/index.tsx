@@ -71,6 +71,13 @@ const PhotoPage: FC<CommonProps> = () => {
 		error: "",
 	});
 
+	useEffect(() => {
+		document.body.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
+	}, [pageNum]);
+
 	const loadAlbums = async () => {
 		try {
 			setLoading(true);
@@ -121,7 +128,7 @@ const PhotoPage: FC<CommonProps> = () => {
 			...prevState,
 			name: MODAL_NAME.VIEW_IMAGE,
 			open: true,
-			content: `https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s1000`,
+			content: `https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s1200`,
 			buttonName: BUTTON_NAME.CLOSE,
 		}));
 	};
@@ -156,7 +163,7 @@ const PhotoPage: FC<CommonProps> = () => {
 				{errors.keyword && <div className="px-6 error text-sm text-red-500 italic">Vui lòng nhập tên cần tìm</div>}
 
 				<div className="p-4">
-					<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+					<div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
 						{list?.items?.length > 0 &&
 							list?.items.map((item: CommonState, index: number) => (
 								<div key={index} className="relative cursor-pointer">

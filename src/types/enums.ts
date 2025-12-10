@@ -105,6 +105,7 @@ export enum MY_ROUTERS {
 	PHOTO = "/photo",
 	MESSAGE = "/message",
 	CREATE_MESSAGE = "/create-message",
+	CONTACT = "/contact",
 	POLICY = "/policy",
 	LOGOUT = "/logout",
 }

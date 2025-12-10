@@ -18,6 +18,7 @@ import myapi from "@/services/myapi";
 import { inviteeAtom } from "@/stores/invitee";
 import storage from "@/utils/storage";
 import { campaignAtom } from "@/stores/campaign";
+import { audioAtom } from "@/stores/audio";
 
 const HomePage: FC<CommonProps> = () => {
 	const navigate = useNavigate();
@@ -36,6 +37,8 @@ const HomePage: FC<CommonProps> = () => {
 		// handleLogout();
 		loadInvite();
 	}, []);
+
+	const [playing, setPlaying] = useRecoilState(audioAtom);
 
 	const loadInvite = async () => {
 		try {
@@ -98,7 +101,15 @@ const HomePage: FC<CommonProps> = () => {
 							</h3>
 						)}
 						<div className="p-5 animUp z-10 w-full">
-							<ButtonDefault text="Xem thiệp" buttonType="secondary z-10" align="center" onClick={() => navigate(MY_ROUTERS.WEDDING)} />
+							<ButtonDefault
+								text="Xem thiệp"
+								buttonType="secondary z-10"
+								align="center"
+								onClick={() => {
+									setPlaying(true);
+									navigate(MY_ROUTERS.WEDDING);
+								}}
+							/>
 						</div>
 					</div>
 				</div>

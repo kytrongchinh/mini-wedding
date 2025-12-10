@@ -34,6 +34,7 @@ import CommonModal from "../modals/common";
 import adtimabox from "@/services/adtimabox";
 import Music from "./music";
 import FallingHearts from "../FallingHearts";
+import FloatingMenu from "../FloatingMenu";
 interface MParams {
 	[key: string]: any;
 }
@@ -204,6 +205,7 @@ const MainLayout: FC = () => {
 			/>
 			<FallingHearts />
 			<Loading />
+			<FloatingMenu />
 			<div className={clsx("container", location.pathname === "/" && "")}>
 				<Outlet />
 			</div>

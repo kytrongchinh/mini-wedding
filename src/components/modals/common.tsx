@@ -84,10 +84,10 @@ const CommonModal: FC<CommonProps> = (props) => {
 
 		if (name == MODAL_NAME.VIEW_IMAGE) {
 			return (
-				<div className="content">
+				<div className="content1">
 					<img src={content} alt={`Gallery ${content}`} className="rounded-lg shadow-lg w-full h-full object-cover" />
-					<div className="mt-5">
-						<div className="mb-3">
+					<div className="mt-2">
+						<div className="mb-0">
 							<ButtonDefault text={BUTTON_NAME.CLOSE} buttonType="button-style" onClick={() => handelClickButton(BUTTON_NAME.CLOSE)} />
 						</div>
 					</div>
@@ -167,7 +167,6 @@ const CommonModal: FC<CommonProps> = (props) => {
 	};
 
 	const acceptToParty = async () => {
-		console.log("okokook");
 		const accept = await myapi.accpetToParty({ slug_name: invitee?.slug_name });
 		if (accept?.status == 200 && accept?.result?.data) {
 			setInvitee(accept?.result?.data?.item?.msg);
@@ -188,7 +187,7 @@ const CommonModal: FC<CommonProps> = (props) => {
 						<img src={close} />
 					</motion.div>
 				</div>
-				<div className="md-content box">
+				<div className="md-content box1">
 					<div className="body">
 						<div className="text-center">{renderContent()}</div>
 					</div>

@@ -35,6 +35,7 @@ import adtimabox from "@/services/adtimabox";
 import { campaignAtom } from "@/stores/campaign";
 import Music from "./music";
 import FallingHearts from "../FallingHearts";
+import FloatingMenu from "../FloatingMenu";
 interface MParams {
 	[key: string]: any;
 }
@@ -205,6 +206,7 @@ const DefaultLayout: FC = () => {
 			/>
 			<Loading />
 			<FallingHearts />
+			<FloatingMenu />
 
 			<div className={clsx("container", location.pathname === "/" && "")}>
 				<Outlet />

@@ -8,6 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { ScrollToTop } from "./ScrollTop/ScrollTop";
 import { RouterCustom } from "./Router/router-custom";
 import Music from "./layout/music";
+import { AudioPlayer } from "./AudioPlayer";
 
 const MyApp = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -30,13 +31,14 @@ const MyApp = () => {
 			<RecoilRoot>
 				<HelmetProvider>
 					<BrowserRouter>
-						<Music ref={audioRef} />
+						{/* <Music ref={audioRef} /> */}
 						<App>
 							<SnackbarProvider>
+								<AudioPlayer />
 								<ScrollToTop />
-								<div className="container" onClick={playAudio}>
-									<RouterCustom />
-								</div>
+								{/* <div className="container" onClick={playAudio}> */}
+								<RouterCustom />
+								{/* </div> */}
 							</SnackbarProvider>
 						</App>
 					</BrowserRouter>
@@ -48,13 +50,14 @@ const MyApp = () => {
 			<RecoilRoot>
 				<HelmetProvider>
 					<BrowserRouter basename="/zapps/868938787760554822">
-						<Music ref={audioRef} />
+						{/* <Music ref={audioRef} /> */}
 						<App>
 							<SnackbarProvider>
+								<AudioPlayer />
 								<ScrollToTop />
-								<div className="container" onClick={playAudio}>
+								{/* <div className="container" onClick={playAudio}> */}
 									<RouterCustom />
-								</div>
+								{/* </div> */}
 							</SnackbarProvider>
 						</App>
 					</BrowserRouter>

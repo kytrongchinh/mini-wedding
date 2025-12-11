@@ -117,11 +117,11 @@ const AlbumPage: FC<CommonProps> = () => {
 					<div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
 						{list?.items?.length > 0 &&
 							list?.items.map((item: CommonState, index: number) => (
-								<div key={index} className="relative cursor-pointer">
+								<div key={index} className="relative cursor-pointer shadow shadow-rose-300">
 									<img
 										onClick={() => handleViewImg(item)}
 										loading="lazy"
-										src={`https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s500`}
+										src={`https://drive.google.com/thumbnail?id=${item?.id_image}&sz=s1200`}
 										alt={`Gallery ${index}`}
 										className="rounded-lg shadow-lg hover:scale-105 transition-transform w-full h-full object-cover"
 									/>

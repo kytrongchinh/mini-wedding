@@ -242,7 +242,7 @@ input[type=”number”],
 	padding: unset;
 	justify-content: center;
 	align-items: center;
-	gap: 4px;
+	gap: 10px;
 
 	li {
 		color: var(--white);
@@ -252,9 +252,12 @@ input[type=”number”],
 		justify-content: center;
 		align-items: center;
 		font-size: 16px;
-		border: 1px solid #de0025;
+		border: 1px solid transparent;
+		padding: 15px;
+		border: 1px solid red;
 		border-radius: 50%;
-		color: #de0025;
+		color: red;
+		// background-color: yellow;
 
 		&.previous {
 			a {
@@ -287,8 +290,7 @@ input[type=”number”],
 			border-radius: 50%;
 			font-size: 16px;
 			border: 1px solid yellow;
-            background-color: #de0025;
-			color: #e1e1e1;
+			background-color: yellow;
 		}
 	}
 }

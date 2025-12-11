@@ -51,7 +51,7 @@ const ContactPage: FC<CommonProps> = () => {
 				<div className="relative flex justify-center items-start text-sm md:text-base text-center w-full gap-3"></div>
 				<div className="p-4">
 					<div className="grid grid-cols-1 gap-4">
-						<div className="!border-2 !border-dashed !border-orange-500 rounded-md p-4 groom ">
+						<div className="!border-2 !border-dashed !border-orange-500 rounded-md p-4 groom shadow shadow-rose-300">
 							{contact?.groom?.name && (
 								<>
 									<p>Chú rể </p>
@@ -128,7 +128,7 @@ const ContactPage: FC<CommonProps> = () => {
 								</>
 							)}
 						</div>
-						<div className="!border-2 !border-dashed !border-orange-500 rounded-md p-4 bride">
+						<div className="!border-2 !border-dashed !border-orange-500 rounded-md p-4 bride shadow shadow-rose-300">
 							{contact?.bride?.name && (
 								<>
 									<p>Cô dâu </p>
@@ -202,7 +202,7 @@ const ContactPage: FC<CommonProps> = () => {
 							)}
 						</div>
 
-						<div className="!border-2 !border-dashed !border-orange-500 rounded-md p-4 wedding_party-details">
+						<div className="!border-2 !border-dashed !border-orange-500 rounded-md p-4 wedding_party-details shadow shadow-rose-300">
 							{contact?.wedding_party?.name && (
 								<>
 									<p className="underline !text-[25px]">

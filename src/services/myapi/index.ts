@@ -342,7 +342,7 @@ class MyApi extends CallApi {
 		}
 	}
 
-	async getAlbums(page = 0, limit = 4) {
+	async getAlbums(page = 0, limit = 2) {
 		try {
 			const url = `${this.my_url}/album?page=${page}&limit=${limit}`;
 			const params: ParamsAxios = { url, headers: { "x-verify-token": this.verify_token }, method: HTTP_METHOD.GET };
